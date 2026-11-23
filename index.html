@@ -945,6 +945,9 @@
   @keyframes bgShotBack{0%{transform:translate(0,0)}50%{transform:translate(-55px,-45px) rotate(-200deg)}100%{transform:translate(-110px,0) rotate(-400deg);opacity:.2}}
   .gcard .track{height:170px!important}
   #lifeDay{cursor:help}
+  .figrow{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+  .figrow .avbtn{position:static;box-shadow:none;border:1px solid var(--line);background:var(--card);padding:4px 11px;font-size:12.5px}
+  .figrow .titlebadge{margin:0}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -1014,13 +1017,13 @@
       <div class="row"><input type="text" id="nameFirst" maxlength="30" data-i18n-ph="nm.ph"><button class="btn" id="nameSave" data-i18n="nm.save"></button></div>
     </div>
     <div class="card gcard" data-hpart="home">
-      <div class="tbox"><div class="track" id="figTrack"></div><button class="avbtn" id="avBtn" data-i18n="av.edit"></button><button class="chatbtn" id="chatBtn" data-i18n-aria="ct.title">💬</button></div>
+      <div class="tbox"><div class="track" id="figTrack"></div><button class="chatbtn" id="chatBtn" data-i18n-aria="ct.title">💬</button></div>
       <div class="talkbar" id="talkBar" hidden>
         <div class="chatrow"><div class="talkwho" id="talkWho"></div><input type="text" id="talkIn" maxlength="300" enterkeyhint="send"><button class="btn ghost" id="talkMic">🎤</button><button class="btn" id="talkSend">➤</button></div>
         <div class="talkfoot"><button class="linkbtn" id="talkDialog" style="display:none"></button><span style="flex:1"></span><button class="linkbtn" id="talkSpk">🔊</button><button class="linkbtn" id="talkLog" data-i18n="tk.log"></button></div>
       </div>
       <div id="avEditor"></div>
-      <div class="titlebadge" id="titleBadge"></div>
+      <div class="figrow"><button class="avbtn" id="avBtn" data-i18n="av.edit"></button><div class="titlebadge" id="titleBadge"></div></div>
       <div class="mood"><div><b id="moodTitle"></b><small id="moodSub"></small></div></div>
       <p class="petline" id="petLine"></p>
       <p class="wxnote" id="wxNote"></p>
@@ -2078,7 +2081,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v105";
+  const VERSION = "v106";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
