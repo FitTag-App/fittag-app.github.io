@@ -943,7 +943,7 @@
   @keyframes bgPop{0%{opacity:0;transform:translate(-50%,10px)}15%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
   @keyframes bgShot{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(110px,-50px) rotate(200deg)}100%{transform:translate(220px,0) rotate(400deg);opacity:.2}}
   @keyframes bgShotBack{0%{transform:translate(0,0)}50%{transform:translate(-55px,-45px) rotate(-200deg)}100%{transform:translate(-110px,0) rotate(-400deg);opacity:.2}}
-  .gcard .track{height:170px!important}
+  .gcard .track{height:240px!important}.gcard .track .walker{scale:1.35}
   #lifeDay{cursor:help}
   .figrow{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
   .figrow .avbtn{position:static;box-shadow:none;border:1px solid var(--line);background:var(--card);padding:4px 11px;font-size:12.5px}
@@ -2081,7 +2081,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v106";
+  const VERSION = "v107";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
