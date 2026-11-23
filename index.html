@@ -911,7 +911,6 @@
   <!-- HEUTE -->
   <section class="view on" id="v-heute">
     <div class="subtabs" id="heuteTabs"><button data-hsub="home" data-i18n="sub.home"></button><button data-hsub="log" data-i18n="sub.log"></button><button data-hsub="office" data-i18n="sub.office"></button><button data-hsub="review" data-i18n="sub.review"></button></div>
-    <div class="card litenote" data-hpart="home" id="liteNote" style="display:none"></div>
     <div class="hquote" data-hpart="home" id="hQuote"><p id="qText"></p><small id="qAuthor"></small></div>
     <div class="card evecard" data-hpart="home" id="eveCard" style="display:none"></div>
     <div class="card namecard" data-hpart="home" id="nameCard" style="display:none">
@@ -935,6 +934,7 @@
       <div class="bar2"><div id="lvlFill" style="background:#7b4fb8"></div></div>
       <p class="foot"><span data-i18n="fig.tap"></span> · <span data-i18n="g.foot"></span></p>
     </div>
+    <div class="card litenote" data-hpart="home" id="liteNote" style="display:none"></div>
     <div class="card dietmini" data-hpart="home" id="dietMini" style="display:none"></div>
     <div class="card lrteaser" data-hpart="home" id="learnTeaser"></div>
     <div class="card boxcard" data-hpart="home" id="boxCard"></div>
@@ -1941,7 +1941,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v94";
+  const VERSION = "v95";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
