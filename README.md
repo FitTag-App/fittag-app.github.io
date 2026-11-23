@@ -2,7 +2,7 @@
 
 Spielerisch gesünder essen und mehr bewegen.
 
-**App öffnen:** https://inas-crypto.github.io/FitTag-Web/
+**App öffnen:** https://fittag-app.github.io/
 
 - Funktioniert auf jedem Handy und Computer im Browser – nichts installieren.
 - Tipp fürs Handy: im Browser-Menü „Zum Startbildschirm hinzufügen“ wählen, dann hat FitTag ein eigenes App-Symbol.
