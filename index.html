@@ -921,6 +921,28 @@
   .plrow .plt{flex:1;min-width:0;display:flex;flex-direction:column}.plrow .plt b{font-size:15px}.plrow .plt small{color:var(--muted);font-size:12.5px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
   .plrow .plc{color:var(--muted);font-size:20px;font-weight:700}.plrow.done .plc{color:var(--green)}
   #playSlot .card{box-shadow:none;border:0;margin:0}
+  .bossgame{text-align:left}
+  .bgscene{position:relative;height:190px;border-radius:16px;overflow:hidden;margin:0 0 10px}
+  .bgsky{position:absolute;inset:0;background:linear-gradient(#bfe6ff,#e9f7ff 60%)}.bgground{position:absolute;left:0;right:0;bottom:0;height:48px;background:linear-gradient(#9fd39a,#7dbb78)}
+  .bgscene.tug .bgsky{background:linear-gradient(#f9e1c7,#fff3e2 60%)}.bgscene.arena .bgsky{background:linear-gradient(#e8dcff,#f6f0ff 60%)}.bgscene.arena .bgground{background:linear-gradient(#d9c9a4,#c8b48a)}
+  .bgteam{display:flex;align-items:flex-end}.bgf{width:50px;height:62px;margin-right:-14px;position:relative}.bgf svg{position:static!important;width:50px!important;height:62px!important;display:block}.bgp{width:44px;height:31px;margin-left:6px;position:relative}.bgp svg{position:static!important;left:auto!important;width:44px!important;height:31px!important;display:block}
+  .bgtm,.bgmn{position:absolute;bottom:30px;transition:left 1.6s cubic-bezier(.3,.8,.3,1)}
+  .bgscene.chase .bgtm .bgteam{animation:bgRun .35s ease-in-out infinite}.bgscene.chase .bgmn{animation:bgHop .5s ease-in-out infinite}
+  .bgmon span{font-size:46px;display:block;line-height:1}.bgmon.lost{transform:rotate(80deg) translateY(10px);filter:grayscale(.6);opacity:.7}.bgmon.hit{animation:bgHit .4s}
+  .bgflag{position:absolute;right:10px;bottom:40px;font-size:30px}.bgpond{position:absolute;left:6%;bottom:28px;font-size:30px}
+  .bgtm.left{left:6%}.bgmn.right{right:6%}
+  .bgrope{position:absolute;left:30%;right:28%;bottom:62px;height:4px;background:#a0703c;border-radius:2px}.bgrope i{position:absolute;top:-24px;font-style:normal;font-size:22px;transform:translateX(-50%);transition:left 1.6s cubic-bezier(.3,.8,.3,1)}
+  .bgmid{position:absolute;left:51%;bottom:44px;color:#a0703c;font-size:26px}
+  .bgscene.tug .bgteam{transform:skewX(-8deg);animation:bgPull 1s ease-in-out infinite}.bgscene.tug .bgmn{animation:bgPull 1s ease-in-out infinite reverse}
+  .bghp{width:64px;height:7px;border-radius:4px;background:#f3d6e0;overflow:hidden;margin:4px auto 0}.bghp i{display:block;height:100%;background:#e74c3c;transition:width 1.6s}
+  .bgpop{position:absolute;left:50%;top:22px;transform:translateX(-50%);font-weight:800;font-size:18px;padding:4px 10px;border-radius:999px;background:#fff;animation:bgPop 2.2s ease-out forwards}.bgpop.good{color:var(--green)}.bgpop.bad{color:#c0392b}
+  .bgshot{position:absolute;left:24%;bottom:70px;font-size:24px;animation:bgShot .9s ease-in forwards}.bgshot.chase{animation-name:bgShotBack}
+  .bgsay{font-style:italic;margin:0 0 8px;font-size:14.5px}
+  @keyframes bgRun{50%{transform:translateY(-4px)}}@keyframes bgHop{50%{transform:translateY(-10px)}}@keyframes bgPull{50%{transform:translateX(-4px)}}
+  @keyframes bgHit{25%{transform:translateX(6px) rotate(8deg)}75%{transform:translateX(-6px) rotate(-8deg)}}
+  @keyframes bgPop{0%{opacity:0;transform:translate(-50%,10px)}15%{opacity:1;transform:translate(-50%,0)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-14px)}}
+  @keyframes bgShot{0%{transform:translate(0,0) rotate(0)}50%{transform:translate(110px,-50px) rotate(200deg)}100%{transform:translate(220px,0) rotate(400deg);opacity:.2}}
+  @keyframes bgShotBack{0%{transform:translate(0,0)}50%{transform:translate(-55px,-45px) rotate(-200deg)}100%{transform:translate(-110px,0) rotate(-400deg);opacity:.2}}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -1617,6 +1639,7 @@
       "sub.play":"🎮 Spielen",
       "ci.btn":"Check-in","ci.done":"Fertig ✓",
       "adv.btn":"Advent","wh.pend":"Deine Wissensfrage wartet noch auf dich!","wh.answer":"❓ Frage beantworten","wh.later":"Später beantworten","pl.ch":"Challenge des Tages","pl.wheelGo":"Einmal drehen + Wissensfrage",
+      "bg.mode.chase":"🏃 Verfolgungsjagd – lauft dem Monster davon bis zur Zielflagge!","bg.mode.tug":"🪢 Tauziehen – zieht die Fahne auf eure Seite!","bg.mode.arena":"⚔️ Kampf – jedes gesunde Ding ist ein Treffer!","bg.how.chase":"Alles Gesunde bringt euch Vorsprung. Ungesunde Snacks lassen das Monster aufholen.","bg.how.tug":"Alles Gesunde zieht die Fahne zu euch. Ungesunde Snacks geben der Krake Kraft.","bg.how.arena":"Alles Gesunde wirft ein Geschoss auf den Drachen. Ungesunde Snacks heilen ihn.","bg.taunt.sugar":"Ich krieg euch! Ein Schokoriegel und ich bin bei euch!","bg.taunt.couch":"Kommt aufs Sofa … nur noch eine Folge …","bg.taunt.fries":"Rrroaar! Mehr Pommes, mehr Feuer!","bg.taunt.soda":"Hihi, ein Schlückchen Limo gefällig?","bg.heal.sugar":"Mmmh, Zucker! Jetzt bin ich schneller!","bg.heal.couch":"Hehe, das Sofa ruft – ich werde stärker!","bg.heal.fries":"Mampf! Pommes machen mich wieder fit!","bg.heal.soda":"Blubb blubb – frische Kraft!","bg.lost.sugar":"Neeein! Ihr seid zu fit für mich … platsch!","bg.lost.couch":"Na gut … ich leg mich wieder hin.","bg.lost.fries":"Mein Feuer … ist aus …","bg.lost.soda":"Pfff … ich bin ganz flach geworden.",
       "tips":["Stell dir morgens direkt ein Glas Wasser neben das Bett oder an den Platz – das erste Glas ist dann schon geschafft.","Eine Portion Gemüse ist etwa eine Handvoll. Ein paar Paprikastreifen oder Gurkenscheiben als Snack zählen schon.","Nach dem Essen 10 Minuten spazieren gehen tut der Verdauung gut und bringt dich deinem Bewegungsziel näher.","Treppe statt Aufzug: Ein paar Stockwerke am Tag summieren sich über die Woche.","Vollkorn statt Weißmehl macht länger satt – zum Beispiel Vollkornbrot oder Haferflocken zum Frühstück.","Iss langsam. Das Sättigungsgefühl kommt erst nach etwa 15–20 Minuten.","Plane Bewegung wie einen Termin. Was im Kalender steht, passiert eher.","Halb voller Teller mit Gemüse, ein Viertel Eiweiß, ein Viertel Beilage – eine einfache Faustregel.","Süße Getränke durch Wasser mit Zitrone, Minze oder Gurke ersetzen spart viel Zucker.","Lieber jeden Tag 15 Minuten als einmal pro Woche zwei Stunden. Regelmäßigkeit schlägt Intensität.","Nüsse, Joghurt oder ein Apfel sind gute Snacks für den kleinen Hunger zwischendurch.","Genug Schlaf hilft auch beim Essen: Wer müde ist, greift eher zu Süßem."]
     },
     en: {
@@ -1730,6 +1753,7 @@
       "sub.play":"🎮 Play",
       "ci.btn":"Check-in","ci.done":"Done ✓",
       "adv.btn":"Advent","wh.pend":"Your knowledge question is still waiting!","wh.answer":"❓ Answer question","wh.later":"Answer later","pl.ch":"Daily challenge","pl.wheelGo":"Spin once + knowledge question",
+      "bg.mode.chase":"🏃 Chase – outrun the monster to the finish flag!","bg.mode.tug":"🪢 Tug of war – pull the flag to your side!","bg.mode.arena":"⚔️ Battle – every healthy thing is a hit!","bg.how.chase":"Everything healthy gives you a lead. Unhealthy snacks let the monster catch up.","bg.how.tug":"Everything healthy pulls the flag your way. Unhealthy snacks make the kraken stronger.","bg.how.arena":"Everything healthy throws something at the dragon. Unhealthy snacks heal it.","bg.taunt.sugar":"I'll get you! One chocolate bar and I'm right behind you!","bg.taunt.couch":"Come to the sofa … just one more episode …","bg.taunt.fries":"Rrroar! More fries, more fire!","bg.taunt.soda":"Hehe, fancy a sip of soda?","bg.heal.sugar":"Mmm, sugar! Now I'm faster!","bg.heal.couch":"Hehe, the sofa is calling – I'm getting stronger!","bg.heal.fries":"Munch! Fries make me fit again!","bg.heal.soda":"Blub blub – fresh power!","bg.lost.sugar":"Nooo! You're too fit for me … splash!","bg.lost.couch":"Fine … I'll go back to lying down.","bg.lost.fries":"My fire … is out …","bg.lost.soda":"Pfff … I've gone completely flat.",
       "tips":["Put a glass of water next to your bed or desk in the morning – your first glass is done before you know it.","One portion of vegetables is about a handful. A few pepper strips or cucumber slices as a snack already count.","A 10-minute walk after eating helps digestion and brings you closer to your exercise goal.","Stairs instead of the elevator: a few floors a day add up over the week.","Whole grain instead of white flour keeps you full longer – try whole-grain bread or oatmeal for breakfast.","Eat slowly. You only start to feel full after about 15–20 minutes.","Plan exercise like an appointment. What's in your calendar is more likely to happen.","Half a plate of vegetables, a quarter protein, a quarter sides – a simple rule of thumb.","Swapping sugary drinks for water with lemon, mint or cucumber saves a lot of sugar.","Better 15 minutes every day than two hours once a week. Consistency beats intensity.","Nuts, yogurt or an apple are good snacks when you're a little hungry.","Enough sleep helps with eating too: when you're tired, you reach for sweets more often."]
     },
     fr: {
@@ -1843,6 +1867,7 @@
       "sub.play":"🎮 Jouer",
       "ci.btn":"Check-in","ci.done":"Terminé ✓",
       "adv.btn":"Avent","wh.pend":"Ta question t'attend encore !","wh.answer":"❓ Répondre","wh.later":"Répondre plus tard","pl.ch":"Défi du jour","pl.wheelGo":"Un tour + question de savoir",
+      "bg.mode.chase":"🏃 Course-poursuite – échappez au monstre jusqu'au drapeau !","bg.mode.tug":"🪢 Tir à la corde – tirez le drapeau de votre côté !","bg.mode.arena":"⚔️ Combat – chaque chose saine est un coup réussi !","bg.how.chase":"Tout ce qui est sain vous donne de l'avance. Les snacks malsains font revenir le monstre.","bg.how.tug":"Tout ce qui est sain tire le drapeau vers vous. Les snacks malsains renforcent la pieuvre.","bg.how.arena":"Tout ce qui est sain lance un projectile sur le dragon. Les snacks malsains le soignent.","bg.taunt.sugar":"Je vais vous attraper ! Une barre chocolatée et je suis là !","bg.taunt.couch":"Venez sur le canapé … juste un épisode de plus …","bg.taunt.fries":"Grrraaa ! Plus de frites, plus de feu !","bg.taunt.soda":"Hihi, une petite gorgée de soda ?","bg.heal.sugar":"Miam, du sucre ! Je vais plus vite !","bg.heal.couch":"Héhé, le canapé m'appelle – je deviens plus fort !","bg.heal.fries":"Miam ! Les frites me requinquent !","bg.heal.soda":"Glouglou – nouvelle énergie !","bg.lost.sugar":"Nooon ! Vous êtes trop en forme … plouf !","bg.lost.couch":"Bon … je retourne m'allonger.","bg.lost.fries":"Mon feu … s'est éteint …","bg.lost.soda":"Pfff … je suis tout éventé.",
       "tips":["Le matin, pose un verre d'eau près de ton lit ou de ton bureau – le premier verre est vite bu.","Une portion de légumes, c'est environ une poignée. Quelques lanières de poivron ou rondelles de concombre en snack, ça compte déjà.","Marcher 10 minutes après le repas aide la digestion et te rapproche de ton objectif d'activité.","L'escalier plutôt que l'ascenseur : quelques étages par jour, ça s'additionne sur la semaine.","Les céréales complètes rassasient plus longtemps que la farine blanche – par exemple du pain complet ou des flocons d'avoine au petit-déjeuner.","Mange lentement. La sensation de satiété n'arrive qu'après 15 à 20 minutes environ.","Planifie ton activité comme un rendez-vous. Ce qui est dans l'agenda a plus de chances d'arriver.","La moitié de l'assiette en légumes, un quart de protéines, un quart d'accompagnement – une règle simple.","Remplacer les boissons sucrées par de l'eau au citron, à la menthe ou au concombre économise beaucoup de sucre.","Mieux vaut 15 minutes chaque jour que deux heures une fois par semaine. La régularité bat l'intensité.","Des noix, un yaourt ou une pomme sont de bonnes collations pour un petit creux.","Bien dormir aide aussi à bien manger : fatigué, on se tourne plus vite vers le sucré."]
     },
     pl: {
@@ -1956,6 +1981,7 @@
       "sub.play":"🎮 Graj",
       "ci.btn":"Check-in","ci.done":"Gotowe ✓",
       "adv.btn":"Adwent","wh.pend":"Twoje pytanie wciąż czeka!","wh.answer":"❓ Odpowiedz","wh.later":"Odpowiem później","pl.ch":"Wyzwanie dnia","pl.wheelGo":"Zakręć + pytanie z wiedzy",
+      "bg.mode.chase":"🏃 Pościg – uciekajcie potworowi aż do mety!","bg.mode.tug":"🪢 Przeciąganie liny – przeciągnijcie flagę na swoją stronę!","bg.mode.arena":"⚔️ Walka – każda zdrowa rzecz to trafienie!","bg.how.chase":"Wszystko, co zdrowe, daje wam przewagę. Niezdrowe przekąski pozwalają potworowi was dogonić.","bg.how.tug":"Wszystko, co zdrowe, ciągnie flagę do was. Niezdrowe przekąski wzmacniają ośmiornicę.","bg.how.arena":"Wszystko, co zdrowe, rzuca pocisk w smoka. Niezdrowe przekąski go leczą.","bg.taunt.sugar":"Złapię was! Jeden batonik i już jestem obok!","bg.taunt.couch":"Chodźcie na kanapę … jeszcze jeden odcinek …","bg.taunt.fries":"Rrrooar! Więcej frytek, więcej ognia!","bg.taunt.soda":"Hihi, może łyczek oranżady?","bg.heal.sugar":"Mniam, cukier! Teraz jestem szybszy!","bg.heal.couch":"Hehe, kanapa woła – rosnę w siłę!","bg.heal.fries":"Mniam! Frytki stawiają mnie na nogi!","bg.heal.soda":"Bul bul – nowa energia!","bg.lost.sugar":"Nieee! Jesteście dla mnie za szybcy … plusk!","bg.lost.couch":"No dobra … idę się położyć.","bg.lost.fries":"Mój ogień … zgasł …","bg.lost.soda":"Pfff … całkiem się wygazowałem.",
       "tips":["Rano postaw szklankę wody przy łóżku albo biurku – pierwsza szklanka będzie wypita w mig.","Porcja warzyw to mniej więcej garść. Kilka pasków papryki albo plasterków ogórka jako przekąska już się liczy.","10 minut spaceru po jedzeniu wspiera trawienie i przybliża cię do celu ruchu.","Schody zamiast windy: kilka pięter dziennie sumuje się w ciągu tygodnia.","Pełne ziarno zamiast białej mąki syci na dłużej – np. chleb pełnoziarnisty albo owsianka na śniadanie.","Jedz powoli. Uczucie sytości pojawia się dopiero po ok. 15–20 minutach.","Planuj ruch jak spotkanie. To, co jest w kalendarzu, łatwiej się udaje.","Pół talerza warzyw, ćwierć białka, ćwierć dodatków – prosta zasada.","Zamiana słodkich napojów na wodę z cytryną, miętą lub ogórkiem oszczędza mnóstwo cukru.","Lepiej 15 minut codziennie niż dwie godziny raz w tygodniu. Regularność wygrywa z intensywnością.","Orzechy, jogurt albo jabłko to dobre przekąski na mały głód.","Wysypianie się pomaga też w jedzeniu: zmęczeni częściej sięgamy po słodycze."]
     }
   };
@@ -2048,10 +2074,10 @@
     if (obj.plan && typeof obj.plan === "object") state.plan = obj.plan;
     if (Array.isArray(obj.events)) state.events = obj.events;
     if (obj.evDone && typeof obj.evDone === "object") state.evDone = obj.evDone;
-    ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
+    ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v103";
+  const VERSION = "v104";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -2084,7 +2110,7 @@
         if (remote.plan && typeof remote.plan === "object" && !metaTouched) state.plan = remote.plan;
         if (Array.isArray(remote.events) && !metaTouched) state.events = remote.events;
         if (remote.evDone && typeof remote.evDone === "object") state.evDone = Object.assign({}, remote.evDone, state.evDone || {});
-        if (!metaTouched) ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins"].forEach(k => { if (remote[k] !== undefined) state[k] = remote[k]; });
+        if (!metaTouched) ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (remote[k] !== undefined) state[k] = remote[k]; });
         if (!metaTouched && I18N[remote.lang] && remote.lang !== lang){ lang = remote.lang; state.lang = lang; applyStatic(); setStorage(storageKey); drawLangMenu(); }
       }
       mode = "konto"; if (window.__fitDbg) window.__fitDbg("connected");
@@ -5986,7 +6012,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
   }
   function closePlayCard(){
     const slot = $("#playSlot"), hold = $("#playHolder");
-    if (slot && hold) [...slot.children].forEach(c => hold.appendChild(c));
+    if (slot && hold) [...slot.children].forEach(c => { if (c.classList.contains("tmp")) c.remove(); else hold.appendChild(c); });
     $("#playSheet").classList.remove("open"); render();
   }
   try { $("#playClose").onclick = closePlayCard; $("#playSheet").addEventListener("click", e => { if (e.target === $("#playSheet")) closePlayCard(); }); } catch(e){}
@@ -6005,12 +6031,53 @@ Antworte NUR mit JSON: {"text":"..."}`);
     el.querySelectorAll("[data-pl]").forEach(b => b.onclick = () => {
       const k = b.dataset.pl;
       if (k === "ch") openChallenge();
-      else if (k === "boss") openPlayCard("bossCard");
+      else if (k === "boss") openBossGame();
       else if (k === "wheel"){ const w = peek(0).wheel; if (w && w.ok === undefined) resumeWheel(); else if (!w && $("#whGo")) spinWheel(); else openPlayCard("wheelCard"); }
       else if (k === "learn"){ const nl = nextLesson(); openLesson(nl.id); }
       else if (k === "box"){ const bc = $("#boxCard"); if (bc && bc.classList.contains("ready") && typeof openBox === "function") openBox(); else openPlayCard("boxCard"); }
       else if (k === "wi") openPlayCard("wiCard");
     });
+  }
+
+
+  // ================= v104: Boss-Spiele (Jagd, Tauziehen, Arena) =================
+  var BOSS_MODE = { sugar:"chase", couch:"tug", fries:"arena", soda:"chase" };
+  var BOSS_LOOK = { sugar:"🍬👾", couch:"🐙", fries:"🐉", soda:"👺" };
+  function openBossGame(){
+    const { w, b } = bossNow(), dmg = bossDamage(), hp = Math.max(0, BOSS_HP - dmg), pct = Math.min(1, dmg / BOSS_HP), mode = BOSS_MODE[b[0]] || "chase";
+    const seen = state.bossSeen && state.bossSeen.w === w.monday ? +state.bossSeen.dmg : 0, from = Math.min(1, Math.max(0, seen / BOSS_HP)), delta = dmg - seen;
+    state.bossSeen = { w: w.monday, dmg }; metaTouched = true; save();
+    const a = av(), pt = a.partner && a.partner !== "none" ? figureSVG("good", TRIP_PARTNER[a.partner]) : "", pet = a.pet && a.pet !== "none" ? petSVG(a.pet) : "";
+    const team = `<div class="bgteam"><div class="bgf">${figureSVG(pct > .5 ? "fit" : "good")}</div>${pt ? `<div class="bgf">${pt}</div>` : ""}${pet ? `<div class="bgp">${pet}</div>` : ""}</div>`;
+    const mon = `<div class="bgmon ${hp === 0 ? "lost" : ""}"><span>${BOSS_LOOK[b[0]]}</span></div>`;
+    let scene = "";
+    if (mode === "chase") scene = `<div class="bgscene chase" id="bgScene"><div class="bgsky"></div><div class="bgground"></div><span class="bgflag">🏁</span>${hp === 0 ? `<span class="bgpond">💦</span>` : ""}<div class="bgtm" id="bgTeam">${team}</div><div class="bgmn" id="bgMon">${mon}</div></div>`;
+    else if (mode === "tug") scene = `<div class="bgscene tug" id="bgScene"><div class="bgsky"></div><div class="bgground"></div><div class="bgtm left">${team}</div><div class="bgrope"><i id="bgKnot">🚩</i></div><div class="bgmn right">${mon}</div><span class="bgmid">┊</span></div>`;
+    else scene = `<div class="bgscene arena" id="bgScene"><div class="bgsky"></div><div class="bgground"></div><div class="bgtm left">${team}</div><div class="bgmn right" id="bgMon">${mon}<div class="bghp"><i id="bgHp" style="width:${Math.round((1 - from) * 100)}%"></i></div></div></div>`;
+    const line = hp === 0 ? t("bg.lost." + b[0]) : delta < 0 ? t("bg.heal." + b[0]) : t("bg.taunt." + b[0]);
+    const box = document.createElement("div"); box.className = "tmp bossgame";
+    box.innerHTML = `<h2 style="margin:0 0 2px">${esc(t("bo.n." + b[0]))}</h2><p class="note" style="margin:0 0 10px">${t("bg.mode." + mode)}</p>${scene}
+      <p class="bgsay" id="bgSay">„${esc(line)}“</p>
+      <div class="bobar"><i style="width:${Math.round(hp / BOSS_HP * 100)}%"></i></div><p class="note" style="margin:6px 0 0">❤️ ${hp}/${BOSS_HP} · ${esc(t("bo.weak." + b[2]))} · ${t("bo.left",{ n: 7 - w.dow })}</p>
+      ${hp === 0 ? `<p style="font-weight:700;color:var(--green);margin:8px 0 0">${t("bo.win")}</p>` : `<p class="note" style="margin:8px 0 0">${t("bg.how." + mode)}</p>`}`;
+    const slot = $("#playSlot"); slot.innerHTML = ""; slot.appendChild(box);
+    $("#playClose").textContent = t("adv.close"); $("#playSheet").classList.add("open");
+    // Animation von „vorher“ nach „jetzt“
+    const place = v => {
+      if (mode === "chase"){ const tx = 22 + v * 62, gap = 10 + v * 40; $("#bgTeam").style.left = tx + "%"; $("#bgMon").style.left = Math.max(1, tx - gap) + "%"; }
+      else if (mode === "tug"){ const k = $("#bgKnot"); if (k) k.style.left = (60 - v * 50) + "%"; }
+      else { const h = $("#bgHp"); if (h) h.style.width = Math.round((1 - v) * 100) + "%"; }
+    };
+    place(from);
+    setTimeout(() => {
+      place(pct);
+      const sc = $("#bgScene"); if (!sc) return;
+      if (delta !== 0){ const pop = document.createElement("span"); pop.className = "bgpop " + (delta > 0 ? "good" : "bad"); pop.textContent = delta > 0 ? (mode === "chase" ? "+" + Math.round(delta / 2) + " m 💨" : "💥 −" + delta) : (mode === "chase" ? "Grrr! " + Math.round(delta / 2) + " m" : "😈 +" + (-delta)); sc.appendChild(pop); }
+      if (mode === "arena" || (mode === "chase" && pct > .5)){
+        const n = mode === "arena" ? Math.max(1, Math.min(6, Math.round(Math.max(0, delta) / 6))) : 2;
+        for (let i = 0; i < n; i++) setTimeout(() => { const sc2 = $("#bgScene"); if (!sc2) return; const pr = document.createElement("span"); pr.className = "bgshot " + mode; pr.textContent = ["🥦","🍎","💧","🥕"][i % 4]; if (mode === "chase"){ const tm = $("#bgTeam"); if (tm) pr.style.left = tm.style.left; } sc2.appendChild(pr); setTimeout(() => { pr.remove(); const m = sc2.querySelector(".bgmon"); if (m){ m.classList.remove("hit"); void m.offsetWidth; m.classList.add("hit"); } }, 900); }, 500 + i * 450);
+      }
+    }, 500);
   }
 
   // ---------- Woche als eigene Seite ----------
