@@ -901,7 +901,8 @@
   @keyframes cfFall{to{transform:translate(var(--dx),105vh) rotate(var(--r))}}
   header{position:relative}
   header:has(.advbtn:not([hidden])){padding-right:52px}
-  .advbtn{position:absolute;top:0;right:0;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--card);font-size:22px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .advbtn{position:absolute;top:0;right:0;width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+  .advbtn #advIcon{display:flex}
   .advbtn i{display:none;position:absolute;top:3px;right:3px;width:10px;height:10px;border-radius:50%;background:#e74c3c;border:2px solid var(--card)}
   .advbtn.todo i{display:block}.advbtn.todo{animation:advWig 2.6s ease-in-out infinite}
   @keyframes advWig{0%,85%,100%{transform:rotate(0)}90%{transform:rotate(-12deg)}95%{transform:rotate(12deg)}}
@@ -956,7 +957,7 @@
       </div>
       <div class="sub" id="greet"></div>
     </div>
-    <button type="button" class="advbtn" id="advBtn" hidden aria-label="🎄">🎄<i></i></button>
+    <button type="button" class="advbtn" id="advBtn" hidden aria-label="🎄"><span id="advIcon"></span><i></i></button>
     <div class="datebar">
       <button id="prev" data-i18n-aria="date.prev">‹</button>
       <b id="dateLabel"></b>
@@ -2019,7 +2020,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v100";
+  const VERSION = "v101";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -5900,6 +5901,19 @@ Antworte NUR mit JSON: {"text":"..."}`);
     b.hidden = !show;
     let todo = false; try { const d = new Date().getDate(); todo = new Date().getMonth() === 11 && d <= 24 && !advOpen()[d]; } catch(e){}
     b.classList.toggle("todo", todo);
+    const now = new Date(), day = now.getMonth() === 11 ? Math.min(24, now.getDate()) : 1, ic = $("#advIcon");
+    if (ic && ic.dataset.d !== String(day)){ ic.dataset.d = String(day); ic.innerHTML = advIconSVG(day); }
+  }
+  function advIconSVG(day){
+    const doors = [[7,13],[17,13],[27,13],[7,23],[27,23],[7,33],[17,33],[27,33]].map(([x,y], i) => `<rect x="${x}" y="${y}" width="8" height="7" rx="1.2" fill="${i % 3 === 0 ? "#f6d37a" : i % 3 === 1 ? "#fff3e0" : "#ffd9d2"}" stroke="#7a1f1f" stroke-width=".7"/>`).join("");
+    return `<svg viewBox="0 0 42 44" width="38" height="40" aria-hidden="true">
+      <rect x="2" y="7" width="38" height="35" rx="4" fill="#c0392b"/><rect x="2" y="7" width="38" height="35" rx="4" fill="none" stroke="#7a1f1f" stroke-width="1.2"/>
+      <path d="M21 7v35" stroke="#2f7d4f" stroke-width="3"/><path d="M2 19h38" stroke="#2f7d4f" stroke-width="3" opacity="0"/>
+      <path d="M21 7c-4-6-10-5-9-1s7 2 9 1zM21 7c4-6 10-5 9-1s-7 2-9 1z" fill="#2f7d4f"/>
+      ${doors}
+      <rect x="15.5" y="21.5" width="11" height="9.5" rx="1.6" fill="#fff" stroke="#7a1f1f" stroke-width=".8"/>
+      <text x="21" y="29.2" text-anchor="middle" font-size="7.6" font-weight="800" fill="#c0392b" font-family="system-ui,sans-serif">${day}</text>
+      <circle cx="33" cy="38" r="1.3" fill="#fff"/><circle cx="10" cy="40" r="1" fill="#fff"/></svg>`;
   }
   try {
     $("#advBtn").onclick = () => { renderAdvent(); $("#advSheet").classList.add("open"); };
