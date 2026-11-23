@@ -950,6 +950,7 @@
   .figrow .titlebadge{margin:0}
   .acclist .accsec{border-bottom:1px solid var(--line)}
   .acclist .accsec:last-child{border-bottom:0}
+  .acclist .accsec{scroll-margin-top:150px}
   .acclist .acch{border-bottom:0}
   .acclist .plc{transition:transform .2s}
   .acclist .accsec.open .plc{transform:rotate(90deg)}
@@ -1197,19 +1198,18 @@
     </div>
 
 
-    <div class="card" data-part="ideas">
-      <h2 data-i18n="sugg.title"></h2>
-      <p class="note" style="margin-top:0" data-i18n="sugg.note"></p>
+    <div class="card playlist acclist" data-part="ideas" id="idAcc">
+     <div class="accsec" data-acc="sugg"><button type="button" class="plrow acch"><span class="ple">💡</span><span class="plt"><b data-acct="sugg.title"></b><small data-i18n="acc.sugg"></small></span><span class="plc">›</span></button>
+     <div class="accbody">
       <div class="chips" id="suggType"></div>
       <div class="sub" style="margin:2px 0 6px"><span data-i18n="kcal.q"></span> <span class="kc-today"></span></div>
       <div class="chips" id="suggRange"></div>
       <input type="text" id="suggWish" data-i18n-ph="sugg.wish" maxlength="150">
       <button class="btn wide" id="suggGo" data-i18n="sugg.go"></button>
       <div id="suggOut"></div>
-    </div>
-
-    <div class="card" data-part="ideas">
-      <h2 data-i18n="menu.title"></h2>
+     </div></div>
+     <div class="accsec" data-acc="menu"><button type="button" class="plrow acch"><span class="ple">📋</span><span class="plt"><b data-acct="menu.title"></b><small data-i18n="acc.menu"></small></span><span class="plc">›</span></button>
+     <div class="accbody">
       <p class="note" style="margin-top:0" data-i18n="menu.note"></p>
       <div class="pick">
         <div class="pbtn"><span data-i18n="camera"></span><input type="file" accept="image/*" capture="environment" data-kind="menu" data-i18n-aria="camera"></div>
@@ -1222,9 +1222,9 @@
       <input type="text" id="menuWish" data-i18n-ph="menu.wish" maxlength="120" style="margin-top:10px">
       <button class="btn wide" id="menuGo" data-i18n="menu.go"></button>
       <div id="menuOut"></div>
-    </div>
-    <div class="card" data-part="ideas">
-      <h2 data-i18n="lb.title"></h2>
+     </div></div>
+     <div class="accsec" data-acc="lb"><button type="button" class="plrow acch"><span class="ple">🏷️</span><span class="plt"><b data-acct="lb.title"></b><small data-i18n="acc.lb"></small></span><span class="plc">›</span></button>
+     <div class="accbody">
       <p class="note" style="margin-top:0" data-i18n="lb.note"></p>
       <div class="pick">
         <div class="pbtn"><span data-i18n="camera"></span><input type="file" accept="image/*" capture="environment" data-kind="label" data-i18n-aria="camera"></div>
@@ -1234,6 +1234,7 @@
       <img class="prev" id="labelPrev" alt="">
       <button class="btn wide" id="labelGo" data-i18n="lb.go" style="margin-top:10px"></button>
       <div id="labelOut"></div>
+     </div></div>
     </div>
 
     <div class="card playlist acclist" data-part="recipes" id="rcAcc">
@@ -1654,7 +1655,7 @@
       "ci.btn":"Check-in","ci.done":"Fertig ✓",
       "adv.btn":"Advent","wh.pend":"Deine Wissensfrage wartet noch auf dich!","wh.answer":"❓ Frage beantworten","wh.later":"Später beantworten","pl.ch":"Challenge des Tages","pl.wheelGo":"Einmal drehen + Wissensfrage",
       "bg.mode.chase":"🏃 Verfolgungsjagd – lauft dem Monster davon bis zur Zielflagge!","bg.mode.tug":"🪢 Tauziehen – zieht die Fahne auf eure Seite!","bg.mode.arena":"⚔️ Kampf – jedes gesunde Ding ist ein Treffer!","bg.how.chase":"Alles Gesunde bringt euch Vorsprung. Ungesunde Snacks lassen das Monster aufholen.","bg.how.tug":"Alles Gesunde zieht die Fahne zu euch. Ungesunde Snacks geben der Krake Kraft.","bg.how.arena":"Alles Gesunde wirft ein Geschoss auf den Drachen. Ungesunde Snacks heilen ihn.","bg.taunt.sugar":"Ich krieg euch! Ein Schokoriegel und ich bin bei euch!","bg.taunt.couch":"Kommt aufs Sofa … nur noch eine Folge …","bg.taunt.fries":"Rrroaar! Mehr Pommes, mehr Feuer!","bg.taunt.soda":"Hihi, ein Schlückchen Limo gefällig?","bg.heal.sugar":"Mmmh, Zucker! Jetzt bin ich schneller!","bg.heal.couch":"Hehe, das Sofa ruft – ich werde stärker!","bg.heal.fries":"Mampf! Pommes machen mich wieder fit!","bg.heal.soda":"Blubb blubb – frische Kraft!","bg.lost.sugar":"Neeein! Ihr seid zu fit für mich … platsch!","bg.lost.couch":"Na gut … ich leg mich wieder hin.","bg.lost.fries":"Mein Feuer … ist aus …","bg.lost.soda":"Pfff … ich bin ganz flach geworden.",
-      "acc.fr": "Foto vom Kühlschrank – FitTag schlägt Gerichte vor", "acc.rcN": "{n} Rezepte gespeichert", "acc.rc0": "Rezepte sammeln: Foto, Link oder selbst schreiben", "acc.cbN": "{n} hausgemachte Gerichte", "acc.cb0": "Deine hausgemachten Gerichte, mit einem Tipp nochmal eintragen","tips":["Stell dir morgens direkt ein Glas Wasser neben das Bett oder an den Platz – das erste Glas ist dann schon geschafft.","Eine Portion Gemüse ist etwa eine Handvoll. Ein paar Paprikastreifen oder Gurkenscheiben als Snack zählen schon.","Nach dem Essen 10 Minuten spazieren gehen tut der Verdauung gut und bringt dich deinem Bewegungsziel näher.","Treppe statt Aufzug: Ein paar Stockwerke am Tag summieren sich über die Woche.","Vollkorn statt Weißmehl macht länger satt – zum Beispiel Vollkornbrot oder Haferflocken zum Frühstück.","Iss langsam. Das Sättigungsgefühl kommt erst nach etwa 15–20 Minuten.","Plane Bewegung wie einen Termin. Was im Kalender steht, passiert eher.","Halb voller Teller mit Gemüse, ein Viertel Eiweiß, ein Viertel Beilage – eine einfache Faustregel.","Süße Getränke durch Wasser mit Zitrone, Minze oder Gurke ersetzen spart viel Zucker.","Lieber jeden Tag 15 Minuten als einmal pro Woche zwei Stunden. Regelmäßigkeit schlägt Intensität.","Nüsse, Joghurt oder ein Apfel sind gute Snacks für den kleinen Hunger zwischendurch.","Genug Schlaf hilft auch beim Essen: Wer müde ist, greift eher zu Süßem."]
+      "acc.fr": "Foto vom Kühlschrank – FitTag schlägt Gerichte vor", "acc.rcN": "{n} Rezepte gespeichert", "acc.rc0": "Rezepte sammeln: Foto, Link oder selbst schreiben", "acc.cbN": "{n} hausgemachte Gerichte", "acc.cb0": "Deine hausgemachten Gerichte, mit einem Tipp nochmal eintragen","acc.sugg": "Ideen, die zu deinem bisherigen Tag passen", "acc.menu": "Im Restaurant: Karte fotografieren, Empfehlung bekommen", "acc.lb": "Produkt fotografieren – wie gesund ist es?","tips":["Stell dir morgens direkt ein Glas Wasser neben das Bett oder an den Platz – das erste Glas ist dann schon geschafft.","Eine Portion Gemüse ist etwa eine Handvoll. Ein paar Paprikastreifen oder Gurkenscheiben als Snack zählen schon.","Nach dem Essen 10 Minuten spazieren gehen tut der Verdauung gut und bringt dich deinem Bewegungsziel näher.","Treppe statt Aufzug: Ein paar Stockwerke am Tag summieren sich über die Woche.","Vollkorn statt Weißmehl macht länger satt – zum Beispiel Vollkornbrot oder Haferflocken zum Frühstück.","Iss langsam. Das Sättigungsgefühl kommt erst nach etwa 15–20 Minuten.","Plane Bewegung wie einen Termin. Was im Kalender steht, passiert eher.","Halb voller Teller mit Gemüse, ein Viertel Eiweiß, ein Viertel Beilage – eine einfache Faustregel.","Süße Getränke durch Wasser mit Zitrone, Minze oder Gurke ersetzen spart viel Zucker.","Lieber jeden Tag 15 Minuten als einmal pro Woche zwei Stunden. Regelmäßigkeit schlägt Intensität.","Nüsse, Joghurt oder ein Apfel sind gute Snacks für den kleinen Hunger zwischendurch.","Genug Schlaf hilft auch beim Essen: Wer müde ist, greift eher zu Süßem."]
     },
     en: {
       "greet.m":"Good morning! Small steps, every day.","greet.d":"Nice to see you.","greet.e":"Good evening! How was your day?",
@@ -1768,7 +1769,7 @@
       "ci.btn":"Check-in","ci.done":"Done ✓",
       "adv.btn":"Advent","wh.pend":"Your knowledge question is still waiting!","wh.answer":"❓ Answer question","wh.later":"Answer later","pl.ch":"Daily challenge","pl.wheelGo":"Spin once + knowledge question",
       "bg.mode.chase":"🏃 Chase – outrun the monster to the finish flag!","bg.mode.tug":"🪢 Tug of war – pull the flag to your side!","bg.mode.arena":"⚔️ Battle – every healthy thing is a hit!","bg.how.chase":"Everything healthy gives you a lead. Unhealthy snacks let the monster catch up.","bg.how.tug":"Everything healthy pulls the flag your way. Unhealthy snacks make the kraken stronger.","bg.how.arena":"Everything healthy throws something at the dragon. Unhealthy snacks heal it.","bg.taunt.sugar":"I'll get you! One chocolate bar and I'm right behind you!","bg.taunt.couch":"Come to the sofa … just one more episode …","bg.taunt.fries":"Rrroar! More fries, more fire!","bg.taunt.soda":"Hehe, fancy a sip of soda?","bg.heal.sugar":"Mmm, sugar! Now I'm faster!","bg.heal.couch":"Hehe, the sofa is calling – I'm getting stronger!","bg.heal.fries":"Munch! Fries make me fit again!","bg.heal.soda":"Blub blub – fresh power!","bg.lost.sugar":"Nooo! You're too fit for me … splash!","bg.lost.couch":"Fine … I'll go back to lying down.","bg.lost.fries":"My fire … is out …","bg.lost.soda":"Pfff … I've gone completely flat.",
-      "acc.fr": "Snap your fridge – FitTag suggests dishes", "acc.rcN": "{n} recipes saved", "acc.rc0": "Collect recipes: photo, link or write your own", "acc.cbN": "{n} homemade dishes", "acc.cb0": "Your homemade dishes, logged again with one tap","tips":["Put a glass of water next to your bed or desk in the morning – your first glass is done before you know it.","One portion of vegetables is about a handful. A few pepper strips or cucumber slices as a snack already count.","A 10-minute walk after eating helps digestion and brings you closer to your exercise goal.","Stairs instead of the elevator: a few floors a day add up over the week.","Whole grain instead of white flour keeps you full longer – try whole-grain bread or oatmeal for breakfast.","Eat slowly. You only start to feel full after about 15–20 minutes.","Plan exercise like an appointment. What's in your calendar is more likely to happen.","Half a plate of vegetables, a quarter protein, a quarter sides – a simple rule of thumb.","Swapping sugary drinks for water with lemon, mint or cucumber saves a lot of sugar.","Better 15 minutes every day than two hours once a week. Consistency beats intensity.","Nuts, yogurt or an apple are good snacks when you're a little hungry.","Enough sleep helps with eating too: when you're tired, you reach for sweets more often."]
+      "acc.fr": "Snap your fridge – FitTag suggests dishes", "acc.rcN": "{n} recipes saved", "acc.rc0": "Collect recipes: photo, link or write your own", "acc.cbN": "{n} homemade dishes", "acc.cb0": "Your homemade dishes, logged again with one tap","acc.sugg": "Ideas that fit the rest of your day", "acc.menu": "At a restaurant: snap the menu, get a pick", "acc.lb": "Snap a product – how healthy is it?","tips":["Put a glass of water next to your bed or desk in the morning – your first glass is done before you know it.","One portion of vegetables is about a handful. A few pepper strips or cucumber slices as a snack already count.","A 10-minute walk after eating helps digestion and brings you closer to your exercise goal.","Stairs instead of the elevator: a few floors a day add up over the week.","Whole grain instead of white flour keeps you full longer – try whole-grain bread or oatmeal for breakfast.","Eat slowly. You only start to feel full after about 15–20 minutes.","Plan exercise like an appointment. What's in your calendar is more likely to happen.","Half a plate of vegetables, a quarter protein, a quarter sides – a simple rule of thumb.","Swapping sugary drinks for water with lemon, mint or cucumber saves a lot of sugar.","Better 15 minutes every day than two hours once a week. Consistency beats intensity.","Nuts, yogurt or an apple are good snacks when you're a little hungry.","Enough sleep helps with eating too: when you're tired, you reach for sweets more often."]
     },
     fr: {
       "greet.m":"Bonjour ! De petits pas, chaque jour.","greet.d":"Contente de te voir.","greet.e":"Bonsoir ! Comment s'est passée ta journée ?",
@@ -1882,7 +1883,7 @@
       "ci.btn":"Check-in","ci.done":"Terminé ✓",
       "adv.btn":"Avent","wh.pend":"Ta question t'attend encore !","wh.answer":"❓ Répondre","wh.later":"Répondre plus tard","pl.ch":"Défi du jour","pl.wheelGo":"Un tour + question de savoir",
       "bg.mode.chase":"🏃 Course-poursuite – échappez au monstre jusqu'au drapeau !","bg.mode.tug":"🪢 Tir à la corde – tirez le drapeau de votre côté !","bg.mode.arena":"⚔️ Combat – chaque chose saine est un coup réussi !","bg.how.chase":"Tout ce qui est sain vous donne de l'avance. Les snacks malsains font revenir le monstre.","bg.how.tug":"Tout ce qui est sain tire le drapeau vers vous. Les snacks malsains renforcent la pieuvre.","bg.how.arena":"Tout ce qui est sain lance un projectile sur le dragon. Les snacks malsains le soignent.","bg.taunt.sugar":"Je vais vous attraper ! Une barre chocolatée et je suis là !","bg.taunt.couch":"Venez sur le canapé … juste un épisode de plus …","bg.taunt.fries":"Grrraaa ! Plus de frites, plus de feu !","bg.taunt.soda":"Hihi, une petite gorgée de soda ?","bg.heal.sugar":"Miam, du sucre ! Je vais plus vite !","bg.heal.couch":"Héhé, le canapé m'appelle – je deviens plus fort !","bg.heal.fries":"Miam ! Les frites me requinquent !","bg.heal.soda":"Glouglou – nouvelle énergie !","bg.lost.sugar":"Nooon ! Vous êtes trop en forme … plouf !","bg.lost.couch":"Bon … je retourne m'allonger.","bg.lost.fries":"Mon feu … s'est éteint …","bg.lost.soda":"Pfff … je suis tout éventé.",
-      "acc.fr": "Photo du frigo – FitTag propose des plats", "acc.rcN": "{n} recettes enregistrées", "acc.rc0": "Collecte des recettes : photo, lien ou la tienne", "acc.cbN": "{n} plats faits maison", "acc.cb0": "Tes plats faits maison, ajoutés d'un geste","tips":["Le matin, pose un verre d'eau près de ton lit ou de ton bureau – le premier verre est vite bu.","Une portion de légumes, c'est environ une poignée. Quelques lanières de poivron ou rondelles de concombre en snack, ça compte déjà.","Marcher 10 minutes après le repas aide la digestion et te rapproche de ton objectif d'activité.","L'escalier plutôt que l'ascenseur : quelques étages par jour, ça s'additionne sur la semaine.","Les céréales complètes rassasient plus longtemps que la farine blanche – par exemple du pain complet ou des flocons d'avoine au petit-déjeuner.","Mange lentement. La sensation de satiété n'arrive qu'après 15 à 20 minutes environ.","Planifie ton activité comme un rendez-vous. Ce qui est dans l'agenda a plus de chances d'arriver.","La moitié de l'assiette en légumes, un quart de protéines, un quart d'accompagnement – une règle simple.","Remplacer les boissons sucrées par de l'eau au citron, à la menthe ou au concombre économise beaucoup de sucre.","Mieux vaut 15 minutes chaque jour que deux heures une fois par semaine. La régularité bat l'intensité.","Des noix, un yaourt ou une pomme sont de bonnes collations pour un petit creux.","Bien dormir aide aussi à bien manger : fatigué, on se tourne plus vite vers le sucré."]
+      "acc.fr": "Photo du frigo – FitTag propose des plats", "acc.rcN": "{n} recettes enregistrées", "acc.rc0": "Collecte des recettes : photo, lien ou la tienne", "acc.cbN": "{n} plats faits maison", "acc.cb0": "Tes plats faits maison, ajoutés d'un geste","acc.sugg": "Des idées adaptées à ta journée", "acc.menu": "Au restaurant : photo de la carte, une recommandation", "acc.lb": "Photo d'un produit – est-il sain ?","tips":["Le matin, pose un verre d'eau près de ton lit ou de ton bureau – le premier verre est vite bu.","Une portion de légumes, c'est environ une poignée. Quelques lanières de poivron ou rondelles de concombre en snack, ça compte déjà.","Marcher 10 minutes après le repas aide la digestion et te rapproche de ton objectif d'activité.","L'escalier plutôt que l'ascenseur : quelques étages par jour, ça s'additionne sur la semaine.","Les céréales complètes rassasient plus longtemps que la farine blanche – par exemple du pain complet ou des flocons d'avoine au petit-déjeuner.","Mange lentement. La sensation de satiété n'arrive qu'après 15 à 20 minutes environ.","Planifie ton activité comme un rendez-vous. Ce qui est dans l'agenda a plus de chances d'arriver.","La moitié de l'assiette en légumes, un quart de protéines, un quart d'accompagnement – une règle simple.","Remplacer les boissons sucrées par de l'eau au citron, à la menthe ou au concombre économise beaucoup de sucre.","Mieux vaut 15 minutes chaque jour que deux heures une fois par semaine. La régularité bat l'intensité.","Des noix, un yaourt ou une pomme sont de bonnes collations pour un petit creux.","Bien dormir aide aussi à bien manger : fatigué, on se tourne plus vite vers le sucré."]
     },
     pl: {
       "greet.m":"Dzień dobry! Małe kroki, każdego dnia.","greet.d":"Miło cię widzieć.","greet.e":"Dobry wieczór! Jak minął dzień?",
@@ -1996,7 +1997,7 @@
       "ci.btn":"Check-in","ci.done":"Gotowe ✓",
       "adv.btn":"Adwent","wh.pend":"Twoje pytanie wciąż czeka!","wh.answer":"❓ Odpowiedz","wh.later":"Odpowiem później","pl.ch":"Wyzwanie dnia","pl.wheelGo":"Zakręć + pytanie z wiedzy",
       "bg.mode.chase":"🏃 Pościg – uciekajcie potworowi aż do mety!","bg.mode.tug":"🪢 Przeciąganie liny – przeciągnijcie flagę na swoją stronę!","bg.mode.arena":"⚔️ Walka – każda zdrowa rzecz to trafienie!","bg.how.chase":"Wszystko, co zdrowe, daje wam przewagę. Niezdrowe przekąski pozwalają potworowi was dogonić.","bg.how.tug":"Wszystko, co zdrowe, ciągnie flagę do was. Niezdrowe przekąski wzmacniają ośmiornicę.","bg.how.arena":"Wszystko, co zdrowe, rzuca pocisk w smoka. Niezdrowe przekąski go leczą.","bg.taunt.sugar":"Złapię was! Jeden batonik i już jestem obok!","bg.taunt.couch":"Chodźcie na kanapę … jeszcze jeden odcinek …","bg.taunt.fries":"Rrrooar! Więcej frytek, więcej ognia!","bg.taunt.soda":"Hihi, może łyczek oranżady?","bg.heal.sugar":"Mniam, cukier! Teraz jestem szybszy!","bg.heal.couch":"Hehe, kanapa woła – rosnę w siłę!","bg.heal.fries":"Mniam! Frytki stawiają mnie na nogi!","bg.heal.soda":"Bul bul – nowa energia!","bg.lost.sugar":"Nieee! Jesteście dla mnie za szybcy … plusk!","bg.lost.couch":"No dobra … idę się położyć.","bg.lost.fries":"Mój ogień … zgasł …","bg.lost.soda":"Pfff … całkiem się wygazowałem.",
-      "acc.fr": "Zdjęcie lodówki – FitTag zaproponuje dania", "acc.rcN": "Zapisane przepisy: {n}", "acc.rc0": "Zbieraj przepisy: zdjęcie, link albo własny", "acc.cbN": "Domowe dania: {n}", "acc.cb0": "Twoje domowe dania, dodane jednym dotknięciem","tips":["Rano postaw szklankę wody przy łóżku albo biurku – pierwsza szklanka będzie wypita w mig.","Porcja warzyw to mniej więcej garść. Kilka pasków papryki albo plasterków ogórka jako przekąska już się liczy.","10 minut spaceru po jedzeniu wspiera trawienie i przybliża cię do celu ruchu.","Schody zamiast windy: kilka pięter dziennie sumuje się w ciągu tygodnia.","Pełne ziarno zamiast białej mąki syci na dłużej – np. chleb pełnoziarnisty albo owsianka na śniadanie.","Jedz powoli. Uczucie sytości pojawia się dopiero po ok. 15–20 minutach.","Planuj ruch jak spotkanie. To, co jest w kalendarzu, łatwiej się udaje.","Pół talerza warzyw, ćwierć białka, ćwierć dodatków – prosta zasada.","Zamiana słodkich napojów na wodę z cytryną, miętą lub ogórkiem oszczędza mnóstwo cukru.","Lepiej 15 minut codziennie niż dwie godziny raz w tygodniu. Regularność wygrywa z intensywnością.","Orzechy, jogurt albo jabłko to dobre przekąski na mały głód.","Wysypianie się pomaga też w jedzeniu: zmęczeni częściej sięgamy po słodycze."]
+      "acc.fr": "Zdjęcie lodówki – FitTag zaproponuje dania", "acc.rcN": "Zapisane przepisy: {n}", "acc.rc0": "Zbieraj przepisy: zdjęcie, link albo własny", "acc.cbN": "Domowe dania: {n}", "acc.cb0": "Twoje domowe dania, dodane jednym dotknięciem","acc.sugg": "Pomysły dopasowane do twojego dnia", "acc.menu": "W restauracji: zdjęcie karty i polecenie", "acc.lb": "Zdjęcie produktu – czy jest zdrowy?","tips":["Rano postaw szklankę wody przy łóżku albo biurku – pierwsza szklanka będzie wypita w mig.","Porcja warzyw to mniej więcej garść. Kilka pasków papryki albo plasterków ogórka jako przekąska już się liczy.","10 minut spaceru po jedzeniu wspiera trawienie i przybliża cię do celu ruchu.","Schody zamiast windy: kilka pięter dziennie sumuje się w ciągu tygodnia.","Pełne ziarno zamiast białej mąki syci na dłużej – np. chleb pełnoziarnisty albo owsianka na śniadanie.","Jedz powoli. Uczucie sytości pojawia się dopiero po ok. 15–20 minutach.","Planuj ruch jak spotkanie. To, co jest w kalendarzu, łatwiej się udaje.","Pół talerza warzyw, ćwierć białka, ćwierć dodatków – prosta zasada.","Zamiana słodkich napojów na wodę z cytryną, miętą lub ogórkiem oszczędza mnóstwo cukru.","Lepiej 15 minut codziennie niż dwie godziny raz w tygodniu. Regularność wygrywa z intensywnością.","Orzechy, jogurt albo jabłko to dobre przekąski na mały głód.","Wysypianie się pomaga też w jedzeniu: zmęczeni częściej sięgamy po słodycze."]
     }
   };
 
@@ -2091,7 +2092,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v108";
+  const VERSION = "v109";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -6099,11 +6100,12 @@ Antworte NUR mit JSON: {"text":"..."}`);
   try { $("#lifeDay").onclick = () => toast(t("g.foot")); } catch(e){}
 
   function renderRcAcc(){
-    const box = $("#rcAcc"); if (!box) return;
-    box.querySelectorAll("[data-acct]").forEach(b => b.textContent = t(b.dataset.acct).replace(/^\S+\s/, ""));
+    const box0 = $("#rcAcc"); if (!box0) return;
     const n = recipes().length, m = cookbook().length;
     $("#accSubRc").textContent = n ? t("acc.rcN",{ n }) : t("acc.rc0");
     $("#accSubCb").textContent = m ? t("acc.cbN",{ n: m }) : t("acc.cb0");
+    document.querySelectorAll(".acclist").forEach(box => {
+    box.querySelectorAll("[data-acct]").forEach(b => b.textContent = t(b.dataset.acct).replace(/^\S+\s/, ""));
     if (!box.dataset.bound){ box.dataset.bound = 1;
       box.querySelectorAll(".acch").forEach(h => h.onclick = () => {
         const sec = h.parentElement, was = sec.classList.contains("open");
@@ -6111,6 +6113,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
         if (!was){ sec.classList.add("open"); setTimeout(() => { try { sec.scrollIntoView({ behavior:"smooth", block:"start" }); } catch(e){} }, 30); }
       });
     }
+    });
   }
   setInterval(() => { try { renderRcAcc(); } catch(e){} }, 2000);
   // ---------- Woche als eigene Seite ----------
