@@ -852,6 +852,29 @@
   .bkbox{border-top:1px solid var(--line);margin-top:12px;padding-top:10px}.bkload{position:relative;overflow:hidden;display:inline-flex;align-items:center;justify-content:center}.bkload input{position:absolute;inset:0;opacity:0;cursor:pointer}
   .litenote{background:#eef6ff;border-color:#cfe2f7}
   .tourfork{display:flex;flex-direction:column;gap:8px;margin-top:8px}.tourfork .btn{white-space:normal;line-height:1.3}
+  .micfab{width:48px!important;height:48px!important;font-size:21px!important;right:12px!important;bottom:calc(84px + env(safe-area-inset-bottom))!important;opacity:.95}
+  .wrap{padding-bottom:150px!important}
+  .dpills{flex-wrap:wrap!important;overflow-x:visible!important;row-gap:4px}
+  .subtabs.five.six button{word-spacing:80px;line-height:1.25;font-size:11px;padding:6px 0}
+  #v-essen .vlcard{display:none!important}
+  .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:0 0 12px}
+  .modes button{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:9px 4px;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink)}
+  .modes button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  #photoPane{margin-bottom:6px}
+  .cbsec{border-top:1px solid var(--line);margin-top:14px;padding-top:10px}.cbsec h3{margin:0 0 4px;font-size:15.5px}
+  .sechead{font-size:13px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:18px 4px 8px}
+  #v-ziele .sechead:first-child{margin-top:4px}
+  .bkbox.nb{border-top:0;margin-top:4px;padding-top:0}
+  details.card>summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:8px}
+  details.card>summary::-webkit-details-marker{display:none}
+  details.card>summary h2{margin:0}
+  details.card>summary::after{content:"⌄";font-size:20px;color:var(--muted);transition:transform .2s}
+  details.card[open]>summary::after{transform:rotate(180deg)}
+  details.card[open]>summary{margin-bottom:10px}
+  details.sub>summary{list-style:none;cursor:pointer;font-weight:600;font-size:14px;margin-top:10px;color:var(--green)}
+  details.sub>summary::-webkit-details-marker{display:none}
+  .qtip{margin-top:10px;font-size:13.5px;line-height:1.45;color:var(--ink);font-family:inherit;font-style:normal}.qtip b{color:var(--green)}
+  .h3sub{margin:16px 0 8px;font-size:16px}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -911,7 +934,7 @@
   <!-- HEUTE -->
   <section class="view on" id="v-heute">
     <div class="subtabs" id="heuteTabs"><button data-hsub="home" data-i18n="sub.home"></button><button data-hsub="log" data-i18n="sub.log"></button><button data-hsub="office" data-i18n="sub.office"></button><button data-hsub="review" data-i18n="sub.review"></button></div>
-    <div class="hquote" data-hpart="home" id="hQuote"><p id="qText"></p><small id="qAuthor"></small></div>
+    <div class="hquote" data-hpart="home" id="hQuote"><p id="qText"></p><small id="qAuthor"></small><div class="qtip"><b data-i18n="tip.title"></b> <span id="tip"></span></div></div>
     <div class="card namecard" data-hpart="home" id="nameCard" style="display:none">
       <h2 data-i18n="nm.title"></h2>
       <div class="row"><input type="text" id="nameFirst" maxlength="30" data-i18n-ph="nm.ph"><button class="btn" id="nameSave" data-i18n="nm.save"></button></div>
@@ -934,21 +957,21 @@
       <p class="foot"><span data-i18n="fig.tap"></span> · <span data-i18n="g.foot"></span></p>
     </div>
     <div class="card evecard" data-hpart="home" id="eveCard" style="display:none"></div>
-    <div class="card dietmini" data-hpart="home" id="dietMini" style="display:none"></div>
-    <div class="card lrteaser" data-hpart="home" id="learnTeaser"></div>
-    <div class="card boxcard" data-hpart="home" id="boxCard"></div>
-    <div class="card wicard" data-hpart="home" id="wiCard" style="display:none"></div>
-    <div class="card advcard" data-hpart="home" id="adventCard" style="display:none"></div>
+    <div class="card" data-hpart="home">
+      <div class="rings" id="rings"></div>
+      <div class="score" id="score"></div>
+    </div>
     <div class="card chcard" data-hpart="home" id="chCard">
       <b data-i18n="ch.title"></b>
       <p class="chtext" id="chText"></p>
       <div id="chState"></div>
       <small class="chinfo" data-i18n="ch.info"></small>
     </div>
-    <div class="card" data-hpart="home">
-      <div class="rings" id="rings"></div>
-      <div class="score" id="score"></div>
-    </div>
+    <div class="card dietmini" data-hpart="home" id="dietMini" style="display:none"></div>
+    <div class="card wicard" data-hpart="home" id="wiCard" style="display:none"></div>
+    <div class="card advcard" data-hpart="home" id="adventCard" style="display:none"></div>
+    <div class="card lrteaser" data-hpart="home" id="learnTeaser"></div>
+    <div class="card boxcard" data-hpart="home" id="boxCard"></div>
 
     
     <div class="card speakcard" data-hpart="log"><div class="spk"><div><b data-i18n="vl.title"></b><small data-i18n="sp.sub"></small></div></div><button class="btn wide" id="speakNow" data-i18n="sp.btn"></button></div>
@@ -981,8 +1004,17 @@
       </div>
     </div>
 
+
     <div class="card" data-hpart="log">
-      <h2 data-i18n="steps.title"></h2>
+      <h2 data-i18n="move"></h2>
+      <div class="chips" id="actChips"></div>
+      <div class="chips" id="minChips"></div>
+      <div class="row">
+        <input type="number" id="actMin" min="1" max="600" data-i18n-ph="minutes" inputmode="numeric">
+        <button class="btn" id="addAct" data-i18n="add"></button>
+      </div>
+      <ul class="list" id="actList"></ul>
+      <h3 class="h3sub" data-i18n="steps.title"></h3>
       <div class="row">
         <input type="number" id="stepsIn" min="0" max="100000" data-i18n-ph="steps.ph" inputmode="numeric">
         <button class="btn" id="setSteps" style="background:#7b4fb8" data-i18n="steps.set"></button>
@@ -995,17 +1027,6 @@
       </div>
       <button class="btn" id="syncSteps" style="display:none;width:100%;margin-top:12px;background:#7b4fb8" data-i18n="steps.sync"></button>
       <p class="note" id="stepsNote"></p>
-    </div>
-
-    <div class="card" data-hpart="log">
-      <h2 data-i18n="move"></h2>
-      <div class="chips" id="actChips"></div>
-      <div class="chips" id="minChips"></div>
-      <div class="row">
-        <input type="number" id="actMin" min="1" max="600" data-i18n-ph="minutes" inputmode="numeric">
-        <button class="btn" id="addAct" data-i18n="add"></button>
-      </div>
-      <ul class="list" id="actList"></ul>
     </div>
 
     <div class="card" data-hpart="log" id="ciCard">
@@ -1037,10 +1058,6 @@
 
     
 
-    <div class="card tip" data-hpart="home">
-      <div class="k" data-i18n="tip.title"></div>
-      <p id="tip"></p>
-    </div>
   </section>
 
   <!-- ESSEN (KI) -->
@@ -1053,6 +1070,20 @@
 
     <div class="card" data-part="analyze">
       <h2 data-i18n="meals.title"></h2>
+      <div class="modes" id="mealModes"><button type="button" class="on" data-mm="type" data-i18n="mm.type"></button><button type="button" data-mm="speak" data-i18n="mm.speak"></button><button type="button" data-mm="photo" data-i18n="mm.photo"></button></div>
+      <div id="photoPane" hidden>
+      <p class="note" style="margin-top:0" data-i18n="food.note"></p>
+      <div class="pick">
+        <div class="pbtn"><span data-i18n="camera"></span><input type="file" accept="image/*" capture="environment" data-kind="food" data-i18n-aria="camera"></div>
+        <div class="pbtn"><span data-i18n="gallery"></span><input type="file" accept="image/*" data-kind="food" data-i18n-aria="gallery"></div>
+      </div>
+      <p class="note" id="foodBlocked" style="display:none;color:var(--red)" data-i18n="blocked"></p>
+      <img class="prev" id="foodPrev" alt="">
+      <input type="text" id="foodHint" data-i18n-ph="food.hint" maxlength="120" style="margin-top:10px">
+      <button class="btn wide" id="foodGo" data-i18n="food.go"></button>
+      <div id="foodOut"></div>
+      </div>
+      <div id="typePane">
       <div class="chips" id="mealType"></div>
       <div id="snackPane">
         <div class="snhead"><span data-i18n="sn.good"></span></div>
@@ -1067,6 +1098,7 @@
         <button class="btn" id="addMeal" data-i18n="add"></button>
       </div>
       <button type="button" class="homechk" id="homeChk"></button>
+      </div>
       <ul class="list" id="mealList"></ul>
       <div class="kcal-total" id="kcalTotal"></div>
     </div>
@@ -1080,19 +1112,6 @@
       <div id="vlOut"></div>
     </div>
 
-    <div class="card" data-part="analyze">
-      <h2 data-i18n="food.title"></h2>
-      <p class="note" style="margin-top:0" data-i18n="food.note"></p>
-      <div class="pick">
-        <div class="pbtn"><span data-i18n="camera"></span><input type="file" accept="image/*" capture="environment" data-kind="food" data-i18n-aria="camera"></div>
-        <div class="pbtn"><span data-i18n="gallery"></span><input type="file" accept="image/*" data-kind="food" data-i18n-aria="gallery"></div>
-      </div>
-      <p class="note" id="foodBlocked" style="display:none;color:var(--red)" data-i18n="blocked"></p>
-      <img class="prev" id="foodPrev" alt="">
-      <input type="text" id="foodHint" data-i18n-ph="food.hint" maxlength="120" style="margin-top:10px">
-      <button class="btn wide" id="foodGo" data-i18n="food.go"></button>
-      <div id="foodOut"></div>
-    </div>
 
     <div class="card" data-part="ideas">
       <h2 data-i18n="sugg.title"></h2>
@@ -1133,11 +1152,11 @@
       <div id="labelOut"></div>
     </div>
 
-    <div class="card cbcard" data-part="recipes" id="cookCard"></div>
     <div class="card" data-part="recipes">
       <h2 data-i18n="rc.title"></h2>
       <div class="row"><input type="text" id="rcSearch" data-i18n-ph="rc.search"><button class="btn" id="rcNew" data-i18n="rc.new"></button></div>
       <div id="rcList" class="rclist"></div>
+      <div id="cookCard" class="cbsec"></div>
     </div>
 
     <div class="card" data-part="recipes">
@@ -1212,14 +1231,10 @@
       <div class="glabel" style="margin-top:0;font-size:15px"><span data-i18n="g.lifeWeek"></span><span id="lifeWeek"></span></div>
       <p class="foot" data-i18n="g.foot"></p>
     </div>
-    <div class="card">
-      <h2 data-i18n="tro.title"></h2>
-      <div class="trogrid" id="trophies"></div>
-    </div>
-    <div class="card">
-      <h2 data-i18n="rules.title"></h2>
+    <details class="card rulesbox">
+      <summary><h2 data-i18n="rules.title"></h2></summary>
       <ul class="rules" id="rules"></ul>
-    </div>
+    </details>
   </section>
 
   <!-- WOCHE -->
@@ -1227,8 +1242,24 @@
 
   <!-- ZIELE -->
   <section class="view" id="v-ziele">
-    <div class="card inscard" id="insCard"></div>
+    <div class="sechead" data-i18n="sec.goals"></div>
+    <div class="card">
+      <h2 data-i18n="goals.title"></h2>
+      <div class="goal"><div data-i18n="goals.water"></div><input type="number" id="g-wasser" min="1" max="20"></div>
+      <div class="goal"><div data-i18n="goals.veg"></div><input type="number" id="g-gemuese" min="1" max="15"></div>
+      <div class="goal"><div data-i18n="goals.move"></div><input type="number" id="g-bewegung" min="5" max="300"></div>
+      <div class="goal"><div data-i18n="goals.steps"></div><input type="number" id="g-schritte" min="1000" max="30000" step="500"></div>
+      <div class="goal"><div><span data-i18n="goals.weight"></span><small style="display:block;color:var(--muted);font-size:12px" data-i18n="goals.weightSub"></small></div><input type="number" id="g-gewicht" min="35" max="250"></div>
+      <p class="note" data-i18n="goals.note"></p>
+    </div>
+    <div class="sechead" data-i18n="sec.week"></div>
     <button class="card weekbtn" id="weekOpen"><span class="wbI">📊</span><span><b data-i18n="wk.open"></b><small data-i18n="wk.openSub"></small><em id="weekMini"></em></span><span class="wbA">›</span></button>
+    <div class="card inscard" id="insCard"></div>
+    <div class="card">
+      <h2 data-i18n="tro.title"></h2>
+      <div class="trogrid" id="trophies"></div>
+    </div>
+    <div class="sechead" data-i18n="sec.set"></div>
     <div class="card">
       <label class="fl" style="margin-top:0"><span data-i18n="nm.label"></span><input type="text" id="nameIn" maxlength="30" data-i18n-ph="nm.ph"></label>
       <p class="note" data-i18n="nm.note"></p>
@@ -1240,9 +1271,6 @@
       <p class="note" data-i18n="night.note"></p>
       <div class="remhead"><span data-i18n="eve.toggle"></span><button class="switch" id="eveToggle" role="switch" aria-checked="true"><span class="knob"></span></button></div>
       <p class="note" data-i18n="eve.note"></p>
-      <div class="bkbox"><b data-i18n="bk.title"></b><p class="note" data-i18n="bk.note" style="margin:2px 0 8px"></p>
-        <div class="row"><button type="button" class="btn ghost" id="bkSave" data-i18n="bk.save"></button><label class="btn ghost bkload"><span data-i18n="bk.load"></span><input type="file" accept=".json,application/json" id="bkFile"></label></div>
-        <div id="bkAsk"></div></div>
       <div class="remhead"><span data-i18n="intro.toggle"></span><button class="switch" id="introToggle" role="switch" aria-checked="false"><span class="knob"></span></button></div>
       <p class="note" data-i18n="intro.note"></p>
 
@@ -1253,19 +1281,12 @@
       <button class="btn ghost wide" id="fullBtn" data-i18n="hs.full"></button>
       <p class="note" data-i18n="hs.note"></p>
     </div>
+    <div class="sechead" data-i18n="sec.data"></div>
     <div class="card">
-      <h2 data-i18n="goals.title"></h2>
-      <div class="goal"><div data-i18n="goals.water"></div><input type="number" id="g-wasser" min="1" max="20"></div>
-      <div class="goal"><div data-i18n="goals.veg"></div><input type="number" id="g-gemuese" min="1" max="15"></div>
-      <div class="goal"><div data-i18n="goals.move"></div><input type="number" id="g-bewegung" min="5" max="300"></div>
-      <div class="goal"><div data-i18n="goals.steps"></div><input type="number" id="g-schritte" min="1000" max="30000" step="500"></div>
-      <div class="goal"><div><span data-i18n="goals.weight"></span><small style="display:block;color:var(--muted);font-size:12px" data-i18n="goals.weightSub"></small></div><input type="number" id="g-gewicht" min="35" max="250"></div>
-      <p class="note" data-i18n="goals.note"></p>
-    </div>
-    <div class="card">
-      <h2 data-i18n="data.title"></h2>
       <p class="note" id="storageInfo" style="margin-top:0"></p>
-      <button class="btn" id="resetDay" style="background:var(--red)" data-i18n="reset"></button>
+      <div class="bkbox nb"><b data-i18n="bk.title"></b><p class="note" data-i18n="bk.note" style="margin:2px 0 8px"></p>
+        <div class="row"><button type="button" class="btn ghost" id="bkSave" data-i18n="bk.save"></button><label class="btn ghost bkload"><span data-i18n="bk.load"></span><input type="file" accept=".json,application/json" id="bkFile"></label></div>
+        <div id="bkAsk"></div></div>
     </div>
   </section>
 
@@ -1525,6 +1546,7 @@
       "bk.title":"💾 Datensicherung","bk.note":"Speichert alle deine Einträge als Datei – praktisch vor einem Handywechsel oder zum Übertragen auf ein anderes Gerät.","bk.save":"💾 Daten sichern","bk.load":"📂 Daten laden","bk.saved":"💾 Sicherung gespeichert","bk.ask":"Diese Sicherung vom {d} ersetzt alle Einträge auf diesem Gerät. Fortfahren?","bk.yes":"Ja, laden","bk.no":"Abbrechen","bk.done":"📂 Daten geladen – willkommen zurück!","bk.bad":"Diese Datei ist keine FitTag-Sicherung.","lt.text":"🌐 Du nutzt FitTag ohne Claude. Eintragen, Reise, Spiele und Animationen funktionieren – KI, Stimme und Liga gibt's in der Claude-Version. Deine Einträge bleiben in diesem Browser; sichere sie ab und zu unter Profil → 💾.","lt.ok":"Verstanden",
       "tour.fGo":"🚀 Los geht's – den Rest lerne ich unterwegs","tour.fAll":"📖 Alles zeigen (10 kurze Seiten)",
       "lt.title":"🌐 Die Web-Version","lt.slide":"Eintragen, Reise, Spiele und Animationen funktionieren hier ganz normal. KI, Stimme und Liga gibt's nur in der Claude-Version. Deine Einträge bleiben in diesem Browser – sichere sie ab und zu unter Profil → 💾.",
+      "sub.analyze":"🍽️ Essen","sub.recipes":"📖 Rezepte","sub.shop":"🛒 Einkauf","rc.title":"📖 Mein Kochbuch","cb.title":"🍳 Selbst gekocht","mm.type":"✏️ Tippen","mm.speak":"🎤 Sprechen","mm.photo":"📸 Foto","sec.goals":"🎯 Meine Ziele","sec.week":"📊 Meine Woche & Einsichten","sec.set":"⚙️ Einstellungen","sec.data":"💾 Daten","tr.cards":"📮 Postkarten ({n})",
       "tips":["Stell dir morgens direkt ein Glas Wasser neben das Bett oder an den Platz – das erste Glas ist dann schon geschafft.","Eine Portion Gemüse ist etwa eine Handvoll. Ein paar Paprikastreifen oder Gurkenscheiben als Snack zählen schon.","Nach dem Essen 10 Minuten spazieren gehen tut der Verdauung gut und bringt dich deinem Bewegungsziel näher.","Treppe statt Aufzug: Ein paar Stockwerke am Tag summieren sich über die Woche.","Vollkorn statt Weißmehl macht länger satt – zum Beispiel Vollkornbrot oder Haferflocken zum Frühstück.","Iss langsam. Das Sättigungsgefühl kommt erst nach etwa 15–20 Minuten.","Plane Bewegung wie einen Termin. Was im Kalender steht, passiert eher.","Halb voller Teller mit Gemüse, ein Viertel Eiweiß, ein Viertel Beilage – eine einfache Faustregel.","Süße Getränke durch Wasser mit Zitrone, Minze oder Gurke ersetzen spart viel Zucker.","Lieber jeden Tag 15 Minuten als einmal pro Woche zwei Stunden. Regelmäßigkeit schlägt Intensität.","Nüsse, Joghurt oder ein Apfel sind gute Snacks für den kleinen Hunger zwischendurch.","Genug Schlaf hilft auch beim Essen: Wer müde ist, greift eher zu Süßem."]
     },
     en: {
@@ -1633,6 +1655,7 @@
       "bk.title":"💾 Backup","bk.note":"Saves all your entries as a file – handy before switching phones or to move to another device.","bk.save":"💾 Back up my data","bk.load":"📂 Load data","bk.saved":"💾 Backup saved","bk.ask":"This backup from {d} replaces all entries on this device. Continue?","bk.yes":"Yes, load","bk.no":"Cancel","bk.done":"📂 Data loaded – welcome back!","bk.bad":"This file isn't a FitTag backup.","lt.text":"🌐 You're using FitTag without Claude. Logging, the journey, games and animations work – AI, voice and the league come with the Claude version. Your entries stay in this browser; back them up now and then under Profile → 💾.","lt.ok":"Got it",
       "tour.fGo":"🚀 Let's go – I'll learn the rest on the way","tour.fAll":"📖 Show me everything (10 short pages)",
       "lt.title":"🌐 The web version","lt.slide":"Logging, the journey, games and animations all work here as normal. AI, voice and the league are only in the Claude version. Your entries stay in this browser – back them up now and then under Profile → 💾.",
+      "sub.analyze":"🍽️ Food","sub.recipes":"📖 Recipes","sub.shop":"🛒 Shopping","rc.title":"📖 My cookbook","cb.title":"🍳 Cooked by me","mm.type":"✏️ Type","mm.speak":"🎤 Speak","mm.photo":"📸 Photo","sec.goals":"🎯 My goals","sec.week":"📊 My week & insights","sec.set":"⚙️ Settings","sec.data":"💾 Data","tr.cards":"📮 Postcards ({n})",
       "tips":["Put a glass of water next to your bed or desk in the morning – your first glass is done before you know it.","One portion of vegetables is about a handful. A few pepper strips or cucumber slices as a snack already count.","A 10-minute walk after eating helps digestion and brings you closer to your exercise goal.","Stairs instead of the elevator: a few floors a day add up over the week.","Whole grain instead of white flour keeps you full longer – try whole-grain bread or oatmeal for breakfast.","Eat slowly. You only start to feel full after about 15–20 minutes.","Plan exercise like an appointment. What's in your calendar is more likely to happen.","Half a plate of vegetables, a quarter protein, a quarter sides – a simple rule of thumb.","Swapping sugary drinks for water with lemon, mint or cucumber saves a lot of sugar.","Better 15 minutes every day than two hours once a week. Consistency beats intensity.","Nuts, yogurt or an apple are good snacks when you're a little hungry.","Enough sleep helps with eating too: when you're tired, you reach for sweets more often."]
     },
     fr: {
@@ -1741,6 +1764,7 @@
       "bk.title":"💾 Sauvegarde","bk.note":"Enregistre toutes tes saisies dans un fichier – pratique avant de changer de téléphone ou pour passer à un autre appareil.","bk.save":"💾 Sauvegarder mes données","bk.load":"📂 Charger des données","bk.saved":"💾 Sauvegarde enregistrée","bk.ask":"Cette sauvegarde du {d} remplace toutes les saisies sur cet appareil. Continuer ?","bk.yes":"Oui, charger","bk.no":"Annuler","bk.done":"📂 Données chargées – bon retour !","bk.bad":"Ce fichier n'est pas une sauvegarde FitTag.","lt.text":"🌐 Tu utilises FitTag sans Claude. Saisies, voyage, jeux et animations fonctionnent – l'IA, la voix et la ligue sont dans la version Claude. Tes saisies restent dans ce navigateur ; sauvegarde-les de temps en temps dans Profil → 💾.","lt.ok":"Compris",
       "tour.fGo":"🚀 C'est parti – j'apprends le reste en route","tour.fAll":"📖 Tout voir (10 pages courtes)",
       "lt.title":"🌐 La version web","lt.slide":"Saisies, voyage, jeux et animations fonctionnent normalement ici. L'IA, la voix et la ligue ne sont que dans la version Claude. Tes saisies restent dans ce navigateur – sauvegarde-les de temps en temps dans Profil → 💾.",
+      "sub.analyze":"🍽️ Repas","sub.recipes":"📖 Recettes","sub.shop":"🛒 Courses","rc.title":"📖 Mon livre de cuisine","cb.title":"🍳 Fait maison","mm.type":"✏️ Écrire","mm.speak":"🎤 Parler","mm.photo":"📸 Photo","sec.goals":"🎯 Mes objectifs","sec.week":"📊 Ma semaine & tendances","sec.set":"⚙️ Réglages","sec.data":"💾 Données","tr.cards":"📮 Cartes postales ({n})",
       "tips":["Le matin, pose un verre d'eau près de ton lit ou de ton bureau – le premier verre est vite bu.","Une portion de légumes, c'est environ une poignée. Quelques lanières de poivron ou rondelles de concombre en snack, ça compte déjà.","Marcher 10 minutes après le repas aide la digestion et te rapproche de ton objectif d'activité.","L'escalier plutôt que l'ascenseur : quelques étages par jour, ça s'additionne sur la semaine.","Les céréales complètes rassasient plus longtemps que la farine blanche – par exemple du pain complet ou des flocons d'avoine au petit-déjeuner.","Mange lentement. La sensation de satiété n'arrive qu'après 15 à 20 minutes environ.","Planifie ton activité comme un rendez-vous. Ce qui est dans l'agenda a plus de chances d'arriver.","La moitié de l'assiette en légumes, un quart de protéines, un quart d'accompagnement – une règle simple.","Remplacer les boissons sucrées par de l'eau au citron, à la menthe ou au concombre économise beaucoup de sucre.","Mieux vaut 15 minutes chaque jour que deux heures une fois par semaine. La régularité bat l'intensité.","Des noix, un yaourt ou une pomme sont de bonnes collations pour un petit creux.","Bien dormir aide aussi à bien manger : fatigué, on se tourne plus vite vers le sucré."]
     },
     pl: {
@@ -1849,6 +1873,7 @@
       "bk.title":"💾 Kopia zapasowa","bk.note":"Zapisuje wszystkie twoje wpisy w pliku – przydatne przed zmianą telefonu lub do przeniesienia na inne urządzenie.","bk.save":"💾 Zapisz moje dane","bk.load":"📂 Wczytaj dane","bk.saved":"💾 Kopia zapisana","bk.ask":"Ta kopia z {d} zastąpi wszystkie wpisy na tym urządzeniu. Kontynuować?","bk.yes":"Tak, wczytaj","bk.no":"Anuluj","bk.done":"📂 Dane wczytane – witaj z powrotem!","bk.bad":"Ten plik nie jest kopią FitTag.","lt.text":"🌐 Używasz FitTag bez Claude. Wpisy, podróż, gry i animacje działają – AI, głos i liga są w wersji Claude. Twoje wpisy zostają w tej przeglądarce; zapisuj je czasem w Profil → 💾.","lt.ok":"Rozumiem",
       "tour.fGo":"🚀 Zaczynamy – resztę poznam po drodze","tour.fAll":"📖 Pokaż wszystko (10 krótkich stron)",
       "lt.title":"🌐 Wersja webowa","lt.slide":"Wpisy, podróż, gry i animacje działają tu normalnie. AI, głos i liga są tylko w wersji Claude. Twoje wpisy zostają w tej przeglądarce – zapisuj je czasem w Profil → 💾.",
+      "sub.analyze":"🍽️ Jedzenie","sub.recipes":"📖 Przepisy","sub.shop":"🛒 Zakupy","rc.title":"📖 Moja książka kucharska","cb.title":"🍳 Ugotowane przeze mnie","mm.type":"✏️ Wpisz","mm.speak":"🎤 Mów","mm.photo":"📸 Zdjęcie","sec.goals":"🎯 Moje cele","sec.week":"📊 Mój tydzień i wnioski","sec.set":"⚙️ Ustawienia","sec.data":"💾 Dane","tr.cards":"📮 Pocztówki ({n})",
       "tips":["Rano postaw szklankę wody przy łóżku albo biurku – pierwsza szklanka będzie wypita w mig.","Porcja warzyw to mniej więcej garść. Kilka pasków papryki albo plasterków ogórka jako przekąska już się liczy.","10 minut spaceru po jedzeniu wspiera trawienie i przybliża cię do celu ruchu.","Schody zamiast windy: kilka pięter dziennie sumuje się w ciągu tygodnia.","Pełne ziarno zamiast białej mąki syci na dłużej – np. chleb pełnoziarnisty albo owsianka na śniadanie.","Jedz powoli. Uczucie sytości pojawia się dopiero po ok. 15–20 minutach.","Planuj ruch jak spotkanie. To, co jest w kalendarzu, łatwiej się udaje.","Pół talerza warzyw, ćwierć białka, ćwierć dodatków – prosta zasada.","Zamiana słodkich napojów na wodę z cytryną, miętą lub ogórkiem oszczędza mnóstwo cukru.","Lepiej 15 minut codziennie niż dwie godziny raz w tygodniu. Regularność wygrywa z intensywnością.","Orzechy, jogurt albo jabłko to dobre przekąski na mały głód.","Wysypianie się pomaga też w jedzeniu: zmęczeni częściej sięgamy po słodycze."]
     }
   };
@@ -1944,7 +1969,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v97";
+  const VERSION = "v98";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -3017,7 +3042,7 @@ Wenn keine Speisekarte lesbar ist: {"erkannt":false,"tipp":"kurze Erklärung"}.`
     $("#brkCount").textContent = n + " / " + BREAK_GOAL;
     $("#brkFill").style.width = Math.min(100, n/BREAK_GOAL*100) + "%";
     $("#brkList").textContent = (d.breaks||[]).map(b => (EXS.find(x=>x.id===b.id)||{e:"✓"}).e).join(" ");
-    $("#exGrid").innerHTML = EXS.map(x => `<button type="button" class="exb" data-ex="${x.id}"><span class="exe">${x.e}</span><b>${esc(t("ex."+x.id))}</b><small>${x.reps ? t("of.reps",{n:x.reps}) : x.secs >= 60 ? (x.secs/60) + " " + t("min") : x.secs + " s"}</small></button>`).join("");
+    $("#exGrid").innerHTML = EXS.map(x => `<button type="button" class="exb" data-ex="${x.id}"><span class="exe">${x.e}</span><b>${esc(t("ex."+x.id))}</b><small>${x.reps ? t("of.reps",{n:x.reps}) : x.secs >= 60 ? Math.round(x.secs/60) + " " + t("min") : x.secs + " s"}</small></button>`).join("");
     $("#exGrid").querySelectorAll("[data-ex]").forEach(b => b.onclick = () => startExercise(b.dataset.ex));
     $("#standMin").textContent = st + " " + t("min");
     const o = office();
@@ -4898,10 +4923,11 @@ Antworte NUR mit JSON: {"tausch":"ein kurzer Satz","spart":0}`).then(x => { if (
         <p class="note" style="margin:4px 0 10px">${solved ? t("tr.gameDone") : t("tr.gameSub")}</p>
         <button class="btn wide" id="tripGame">${t("tr.play")}</button></div>
       ${sharedTripHTML()}
-      <div class="card"><h2>${t("tr.how")}</h2><ul class="tpl">${parts.map(([e, l, v, on]) => `<li class="${on ? "on" : ""}"><span>${e} ${esc(l)}</span><b>${on ? "✓ " : ""}+${num(v)} ⭐</b></li>`).join("")}</ul>
+      <details class="card tpdet"><summary><h2>${t("tr.how")}</h2></summary><ul class="tpl">${parts.map(([e, l, v, on]) => `<li class="${on ? "on" : ""}"><span>${e} ${esc(l)}</span><b>${on ? "✓ " : ""}+${num(v)} ⭐</b></li>`).join("")}</ul>
         <p class="note" style="margin:8px 0 0">${t("tr.leg",{n:TRIP_STEP})}</p>
-        <div class="cards">${Array.from({length: Math.min(ci, 40)}, (_, i) => cities[(i + 1) % cities.length]).map(x => `<span class="pc">📮 ${x[1]} ${esc(x[0])}</span>`).join("")}</div>
-        ${ci > 0 ? `<button class="linkbtn" id="tripAgain" style="margin-top:8px">${t("tp.again")}</button>` : ""}</div>`;
+      </details>
+      ${ci > 0 ? `<div class="card"><details class="sub"><summary>${t("tr.cards",{n: Math.min(ci, 40)})}</summary><div class="cards">${Array.from({length: Math.min(ci, 40)}, (_, i) => cities[(i + 1) % cities.length]).map(x => `<span class="pc">📮 ${x[1]} ${esc(x[0])}</span>`).join("")}</div></details>
+        <button class="linkbtn" id="tripAgain" style="margin-top:8px">${t("tp.again")}</button></div>` : ""}`;
       if (ride){ tripPlayed = true; clearTimeout(tripTimer); tripTimer = setTimeout(() => { const sc = $("#tripScene"); if (sc){ sc.classList.remove("ride"); sc.classList.add("arrive"); if (into > 0) tripTimer = setTimeout(() => { const s2 = $("#tripScene"); if (s2){ s2.classList.remove("arrive"); s2.classList.add("cabin"); } }, 3500); } }, 3800); }
       if (ci > 0 && !adv) setTimeout(() => loadAdventure(ci, c[0]), 50);
     } else if (dietSec === "bingo"){
@@ -5447,7 +5473,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
   function renderCookbook(){
     const box = $("#cookCard"); if (!box) return;
     const list = cookbook();
-    box.innerHTML = `<h2>${t("cb.title")}</h2><p class="note" style="margin-top:-4px">${list.length ? t("cb.sub") : t("cb.empty")}</p>
+    box.innerHTML = `<h3>${t("cb.title")}</h3><p class="note" style="margin-top:-2px">${list.length ? t("cb.sub") : t("cb.empty")}</p>
       ${list.length ? `<ul class="cblist">${list.map(x => `<li><label class="cbimg" title="${esc(t("cb.photo"))}">${x.photo ? `<img src="${x.photo}" alt="">` : "🍲"}<input type="file" accept="image/*" data-cbp="${x.id}"></label>
         <div class="cbt"><b>${esc(x.text)}</b><small>${t("cb.n",{n: +x.n || 0})}</small></div><button type="button" class="btn" data-cbc="${x.id}">${t("cb.again")}</button><button type="button" class="x" data-cbd="${x.id}" aria-label="${t("delete")}">✕</button></li>`).join("")}</ul>` : ""}
       <div class="row" style="margin-top:8px"><input type="text" id="cbNew" maxlength="80" placeholder="${esc(t("cb.ph"))}"><button class="btn ghost" id="cbAdd" type="button">${t("cb.add")}</button></div>`;
@@ -5622,6 +5648,21 @@ Antworte NUR mit JSON: {"text":"..."}`);
     el.innerHTML = `<p style="margin:0 0 8px;font-size:13.5px;line-height:1.45">${esc(t("lt.text"))}</p><button type="button" class="btn ghost" id="liteOk">${t("lt.ok")}</button>`;
     $("#liteOk").onclick = () => { try { localStorage.setItem("fittag-liteok", "1"); } catch(e){} el.style.display = "none"; };
   }
+
+
+  // ---------- v98: Eintrage-Modi bei Essen & Datumsleiste nur wo sie gebraucht wird ----------
+  function setMealMode(m){
+    document.querySelectorAll("#mealModes [data-mm]").forEach(b => b.classList.toggle("on", b.dataset.mm === (m === "speak" ? "type" : m)));
+    const pp = $("#photoPane"), tp = $("#typePane"); if (pp) pp.hidden = m !== "photo"; if (tp) tp.hidden = m === "photo";
+  }
+  try { document.querySelectorAll("#mealModes [data-mm]").forEach(b => b.onclick = () => { const m = b.dataset.mm; if (m === "speak"){ setMealMode("type"); openVlSheet(); } else setMealMode(m); }); } catch(e){}
+  function syncDatebar(){
+    const db = document.querySelector(".datebar"); if (!db) return;
+    const v = ((document.querySelector(".view.on") || {}).id || "v-heute").replace("v-", "");
+    const show = (v === "heute" && ["home","log","office"].includes(heuteSub)) || (v === "essen" && essenSub === "analyze") || v === "diet";
+    db.style.visibility = show ? "" : "hidden";
+  }
+  setInterval(syncDatebar, 300);
 
   // ---------- Woche als eigene Seite ----------
   function openWeek(){ $("#v-woche").classList.add("open"); document.body.classList.add("noscroll"); $("#v-woche").scrollTop = 0; }
