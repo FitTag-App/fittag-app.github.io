@@ -903,6 +903,9 @@
   header:has(.advbtn:not([hidden])){padding-right:52px}
   .advbtn{position:absolute;top:0;right:0;width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:var(--card);padding:0;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
   .advbtn #advIcon{display:flex}
+  .advbtn{flex-direction:column;width:58px!important;height:60px!important;gap:1px}.advbtn small{font-size:10px;font-weight:700;color:#a8322a;line-height:1}
+  .advbtn #advIcon svg{width:32px;height:34px}
+  header:has(.advbtn:not([hidden])){padding-right:64px!important}
   .advbtn i{display:none;position:absolute;top:3px;right:3px;width:10px;height:10px;border-radius:50%;background:#e74c3c;border:2px solid var(--card)}
   .advbtn.todo i{display:block}.advbtn.todo{animation:advWig 2.6s ease-in-out infinite}
   @keyframes advWig{0%,85%,100%{transform:rotate(0)}90%{transform:rotate(-12deg)}95%{transform:rotate(12deg)}}
@@ -912,6 +915,12 @@
   .cibtn{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:0 14px;height:42px;font:inherit;font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap}
   .cibtn.done{background:#e6f4ea;border-color:#bfe0c8;color:var(--green)}
   #ciSheet .cicard{box-shadow:none;border:0;padding:4px 0 0;margin:0}#ciSheet .cihead{cursor:default}
+  .playlist{padding:6px}.plrows{display:flex;flex-direction:column}
+  .plrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:12px 8px;font:inherit;color:var(--ink);cursor:pointer}
+  .plrow:last-child{border-bottom:0}.plrow .ple{font-size:28px;width:44px;text-align:center;flex:none}
+  .plrow .plt{flex:1;min-width:0;display:flex;flex-direction:column}.plrow .plt b{font-size:15px}.plrow .plt small{color:var(--muted);font-size:12.5px;line-height:1.35;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .plrow .plc{color:var(--muted);font-size:20px;font-weight:700}.plrow.done .plc{color:var(--green)}
+  #playSlot .card{box-shadow:none;border:0;margin:0}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -961,7 +970,7 @@
       </div>
       <div class="sub" id="greet"></div>
     </div>
-    <button type="button" class="advbtn" id="advBtn" hidden aria-label="🎄"><span id="advIcon"></span><i></i></button>
+    <button type="button" class="advbtn" id="advBtn" hidden aria-label="🎄"><span id="advIcon"></span><small data-i18n="adv.btn"></small><i></i></button>
     <div class="daterow">
     <div class="datebar">
       <button id="prev" data-i18n-aria="date.prev">‹</button>
@@ -1005,17 +1014,20 @@
       <div class="score" id="score"></div>
     </div>
     <div class="card dietmini" data-hpart="home" id="dietMini" style="display:none"></div>
-    <div class="card chcard" data-hpart="play" id="chCard">
+    <div class="card playlist" data-hpart="play" id="playList"></div>
+    <div id="playHolder" hidden>
+    <div class="card chcard" id="chCard">
       <b data-i18n="ch.title"></b>
       <p class="chtext" id="chText"></p>
       <div id="chState"></div>
       <small class="chinfo" data-i18n="ch.info"></small>
     </div>
-    <div class="card bosscard" data-hpart="play" id="bossCard"></div>
-    <div class="card wheelcard" data-hpart="play" id="wheelCard" style="display:none"></div>
-    <div class="card wicard" data-hpart="play" id="wiCard" style="display:none"></div>
-    <div class="card lrteaser" data-hpart="play" id="learnTeaser"></div>
-    <div class="card boxcard" data-hpart="play" id="boxCard"></div>
+    <div class="card bosscard" id="bossCard"></div>
+    <div class="card wheelcard" id="wheelCard" style="display:none"></div>
+    <div class="card wicard" id="wiCard" style="display:none"></div>
+    <div class="card lrteaser" id="learnTeaser"></div>
+    <div class="card boxcard" id="boxCard"></div>
+    </div>
 
     
     <div class="card speakcard" data-hpart="log"><div class="spk"><div><b data-i18n="vl.title"></b><small data-i18n="sp.sub"></small></div></div><button class="btn wide" id="speakNow" data-i18n="sp.btn"></button></div>
@@ -1440,6 +1452,7 @@
   <button type="button" class="btn wide" id="ciDone"></button>
 </div></div>
 <div class="sheet" id="advSheet"><div class="sheetIn scroll"><button class="x sheetx" id="advSheetX" aria-label="✕">✕</button><div class="card advcard" id="adventCard" style="display:none"></div></div></div>
+<div class="sheet" id="playSheet"><div class="sheetIn scroll"><div id="playSlot"></div><button type="button" class="btn wide" id="playClose" style="background:transparent;color:var(--muted)"></button></div></div>
 <div class="sheet" id="albumSheet"><div class="sheetIn scroll" id="albumIn"></div></div>
 <div class="sheet" id="wheelSheet"><div class="sheetIn" id="wheelIn"></div></div>
 <div class="sheet" id="gameSheet"><div class="sheetIn scroll" id="gameIn"></div></div>
@@ -1603,6 +1616,7 @@
       "st.badge":"🔥 {n}","st.toast":"🔥 {n} Tage in Folge! Mach heute etwas Gesundes, damit die Serie weiterläuft.","st.freeze":" ❄️ Serien-Schutz bereit: Ein verpasster Tag pro Woche wird verziehen.","st.zero":"🔥 Starte heute eine neue Serie – ein geschafftes Ziel reicht!","ti.label":"🏷️ Titel","ti.how.start":"","ti.how.water":"5 Tage Wasserziel","ti.how.veg":"5 Tage Obst & Gemüse","ti.how.steps":"Einmal 10.000 Schritte","ti.how.streak":"7 Tage Serie","ti.how.cook":"5× selbst gekocht","ti.how.learn":"5 Wissenshappen","ti.how.boss":"Einen Wochen-Boss besiegen","ti.how.trip":"5 Städte erreicht","ti.how.pet":"Haustier Level 5","ti.how.wheel":"5× am Glücksrad gewonnen","ti.how.legend":"Level 10","ti.n.start":"Frischling","ti.n.water":"Wasser-Wizard","ti.n.veg":"Brokkoli-Boss","ti.n.steps":"Schritt-Rakete","ti.n.streak":"Serien-Flamme","ti.n.cook":"Küchen-Kanone","ti.n.learn":"Wissens-Eule","ti.n.boss":"Monster-Schreck","ti.n.trip":"Reise-Profi","ti.n.pet":"Pfoten-Profi","ti.n.wheel":"Glückspilz","ti.n.legend":"FitTag-Legende","ti.new":"🏷️ Neuer Titel freigeschaltet: {n}! Wähl ihn unter „Aussehen“.","pt.line":"{e} {n} · Level {l}","pt.next":" · noch {x} 🍖 bis Level {m}","pt.trick":" · kann: {t}","pt.hungry":"{e} {n} hat Hunger – iss etwas Gesundes, dann frisst es mit!","pt.lvl":"{e} {n} ist jetzt Level {l}! Neuer Trick: {t} – tipp es im Park an.","pt.tr.paw":"Pfötchen","pt.tr.roll":"Rolle","pt.tr.jump":"Hochsprung","pt.tr.spin":"Pirouette","pt.tr.dance":"Tanz","bo.title":"👾 Wochen-Boss","bo.n.sugar":"Das Zucker-Monster","bo.n.couch":"Die Couch-Krake","bo.n.fries":"Der Fritten-Drache","bo.n.soda":"Der Limo-Kobold","bo.weak.water":"Schwäche: Wasser – jedes Glas zählt doppelt!","bo.weak.move":"Schwäche: Bewegung – jede Minute zählt doppelt!","bo.weak.veg":"Schwäche: Obst & Gemüse – zählt doppelt!","bo.how":"Alles Gesunde macht Schaden – ungesunde Snacks heilen es!","bo.win":"🏆 Besiegt! +30 Punkte","bo.winT":"🏆 {n} ist besiegt! +30 Punkte","bo.left":"Noch {n} Tage","wh.title":"🎡 Glücksrad","wh.sub":"Einmal am Tag drehen – beantworte die Wissensfrage, dann gehört der Gewinn dir!","wh.spin":"🎡 Drehen","wh.done":"✅ Heute schon gedreht – morgen wieder!","wh.need":"Trag zuerst etwas für heute ein, dann darfst du drehen.","wh.got":"Du hast gedreht: {p}","wh.q":"Beantworte die Frage, um den Gewinn zu bekommen:","wh.win":"🎉 Richtig! Gewonnen: {p}","wh.lose":"Knapp daneben – richtig ist: {a}. Trostpreis: +5 Punkte","wh.close":"Super!","wh.p.pts":"🎯 +15 Punkte","wh.p.pet":"🦴 Leckerli: +20 Haustier-Futter","wh.p.boss":"💥 +25 Boss-Schaden","wh.p.jack":"🍀 Jackpot: +30 Punkte","wh.p.pet2":"🍖 Festmahl: +40 Haustier-Futter","wh.p.boss2":"⚡ Blitz: +40 Boss-Schaden","al.title":"Sammelalbum","al.sub":"{n} von {m} Stickern gesammelt","al.cities":"🚆 Städte","al.learn":"📚 Wissen","al.boss":"👾 Besiegte Bosse","al.titles":"🏷️ Titel","al.cook":"🍳 Selbst gekocht","al.tricks":"🐾 Haustier-Tricks","al.new":"📒 Neuer Sticker im Sammelalbum!","al.close":"Schließen","cb2.goal":"🎉 Tagesziel geschafft!","cb2.all4":"🌟 Alle 4 Tagesziele geschafft – Wahnsinn!",
       "sub.play":"🎮 Spielen",
       "ci.btn":"Check-in","ci.done":"Fertig ✓",
+      "adv.btn":"Advent","wh.pend":"Deine Wissensfrage wartet noch auf dich!","wh.answer":"❓ Frage beantworten","wh.later":"Später beantworten","pl.ch":"Challenge des Tages","pl.wheelGo":"Einmal drehen + Wissensfrage",
       "tips":["Stell dir morgens direkt ein Glas Wasser neben das Bett oder an den Platz – das erste Glas ist dann schon geschafft.","Eine Portion Gemüse ist etwa eine Handvoll. Ein paar Paprikastreifen oder Gurkenscheiben als Snack zählen schon.","Nach dem Essen 10 Minuten spazieren gehen tut der Verdauung gut und bringt dich deinem Bewegungsziel näher.","Treppe statt Aufzug: Ein paar Stockwerke am Tag summieren sich über die Woche.","Vollkorn statt Weißmehl macht länger satt – zum Beispiel Vollkornbrot oder Haferflocken zum Frühstück.","Iss langsam. Das Sättigungsgefühl kommt erst nach etwa 15–20 Minuten.","Plane Bewegung wie einen Termin. Was im Kalender steht, passiert eher.","Halb voller Teller mit Gemüse, ein Viertel Eiweiß, ein Viertel Beilage – eine einfache Faustregel.","Süße Getränke durch Wasser mit Zitrone, Minze oder Gurke ersetzen spart viel Zucker.","Lieber jeden Tag 15 Minuten als einmal pro Woche zwei Stunden. Regelmäßigkeit schlägt Intensität.","Nüsse, Joghurt oder ein Apfel sind gute Snacks für den kleinen Hunger zwischendurch.","Genug Schlaf hilft auch beim Essen: Wer müde ist, greift eher zu Süßem."]
     },
     en: {
@@ -1715,6 +1729,7 @@
       "st.badge":"🔥 {n}","st.toast":"🔥 {n} days in a row! Do something healthy today to keep the streak going.","st.freeze":" ❄️ Streak shield ready: one missed day per week is forgiven.","st.zero":"🔥 Start a new streak today – one goal reached is enough!","ti.label":"🏷️ Title","ti.how.start":"","ti.how.water":"5 days water goal","ti.how.veg":"5 days fruit & veg","ti.how.steps":"10,000 steps once","ti.how.streak":"7-day streak","ti.how.cook":"Cooked 5×","ti.how.learn":"5 bites of knowledge","ti.how.boss":"Defeat a weekly boss","ti.how.trip":"Reach 5 cities","ti.how.pet":"Pet level 5","ti.how.wheel":"Win the wheel 5×","ti.how.legend":"Level 10","ti.n.start":"Fresh sprout","ti.n.water":"Water wizard","ti.n.veg":"Broccoli boss","ti.n.steps":"Step rocket","ti.n.streak":"Streak flame","ti.n.cook":"Kitchen cannon","ti.n.learn":"Wise owl","ti.n.boss":"Monster scarer","ti.n.trip":"Travel pro","ti.n.pet":"Paw pro","ti.n.wheel":"Lucky duck","ti.n.legend":"FitTag legend","ti.new":"🏷️ New title unlocked: {n}! Pick it under “Look”.","pt.line":"{e} {n} · level {l}","pt.next":" · {x} 🍖 to level {m}","pt.trick":" · knows: {t}","pt.hungry":"{e} {n} is hungry – eat something healthy and it eats along!","pt.lvl":"{e} {n} is now level {l}! New trick: {t} – tap it in the park.","pt.tr.paw":"Paw","pt.tr.roll":"Roll","pt.tr.jump":"High jump","pt.tr.spin":"Pirouette","pt.tr.dance":"Dance","bo.title":"👾 Weekly boss","bo.n.sugar":"The Sugar Monster","bo.n.couch":"The Couch Kraken","bo.n.fries":"The Fries Dragon","bo.n.soda":"The Soda Goblin","bo.weak.water":"Weakness: water – every glass counts double!","bo.weak.move":"Weakness: exercise – every minute counts double!","bo.weak.veg":"Weakness: fruit & veg – counts double!","bo.how":"Everything healthy deals damage – unhealthy snacks heal it!","bo.win":"🏆 Defeated! +30 points","bo.winT":"🏆 {n} is defeated! +30 points","bo.left":"{n} days left","wh.title":"🎡 Lucky wheel","wh.sub":"Spin once a day – answer the knowledge question and the prize is yours!","wh.spin":"🎡 Spin","wh.done":"✅ Already spun today – again tomorrow!","wh.need":"Log something for today first, then you can spin.","wh.got":"You spun: {p}","wh.q":"Answer the question to win it:","wh.win":"🎉 Correct! You won: {p}","wh.lose":"So close – the answer is: {a}. Consolation prize: +5 points","wh.close":"Great!","wh.p.pts":"🎯 +15 points","wh.p.pet":"🦴 Treat: +20 pet food","wh.p.boss":"💥 +25 boss damage","wh.p.jack":"🍀 Jackpot: +30 points","wh.p.pet2":"🍖 Feast: +40 pet food","wh.p.boss2":"⚡ Lightning: +40 boss damage","al.title":"Sticker album","al.sub":"{n} of {m} stickers collected","al.cities":"🚆 Cities","al.learn":"📚 Knowledge","al.boss":"👾 Bosses defeated","al.titles":"🏷️ Titles","al.cook":"🍳 Cooked by me","al.tricks":"🐾 Pet tricks","al.new":"📒 New sticker in your album!","al.close":"Close","cb2.goal":"🎉 Daily goal reached!","cb2.all4":"🌟 All 4 daily goals reached – amazing!",
       "sub.play":"🎮 Play",
       "ci.btn":"Check-in","ci.done":"Done ✓",
+      "adv.btn":"Advent","wh.pend":"Your knowledge question is still waiting!","wh.answer":"❓ Answer question","wh.later":"Answer later","pl.ch":"Daily challenge","pl.wheelGo":"Spin once + knowledge question",
       "tips":["Put a glass of water next to your bed or desk in the morning – your first glass is done before you know it.","One portion of vegetables is about a handful. A few pepper strips or cucumber slices as a snack already count.","A 10-minute walk after eating helps digestion and brings you closer to your exercise goal.","Stairs instead of the elevator: a few floors a day add up over the week.","Whole grain instead of white flour keeps you full longer – try whole-grain bread or oatmeal for breakfast.","Eat slowly. You only start to feel full after about 15–20 minutes.","Plan exercise like an appointment. What's in your calendar is more likely to happen.","Half a plate of vegetables, a quarter protein, a quarter sides – a simple rule of thumb.","Swapping sugary drinks for water with lemon, mint or cucumber saves a lot of sugar.","Better 15 minutes every day than two hours once a week. Consistency beats intensity.","Nuts, yogurt or an apple are good snacks when you're a little hungry.","Enough sleep helps with eating too: when you're tired, you reach for sweets more often."]
     },
     fr: {
@@ -1827,6 +1842,7 @@
       "st.badge":"🔥 {n}","st.toast":"🔥 {n} jours d'affilée ! Fais quelque chose de sain aujourd'hui pour continuer la série.","st.freeze":" ❄️ Bouclier prêt : un jour manqué par semaine est pardonné.","st.zero":"🔥 Commence une nouvelle série aujourd'hui – un objectif atteint suffit !","ti.label":"🏷️ Titre","ti.how.start":"","ti.how.water":"5 jours objectif eau","ti.how.veg":"5 jours fruits & légumes","ti.how.steps":"10 000 pas une fois","ti.how.streak":"Série de 7 jours","ti.how.cook":"Cuisiné 5×","ti.how.learn":"5 bouchées de savoir","ti.how.boss":"Vaincre un boss","ti.how.trip":"5 villes atteintes","ti.how.pet":"Animal niveau 5","ti.how.wheel":"Gagner 5× à la roue","ti.how.legend":"Niveau 10","ti.n.start":"Jeune pousse","ti.n.water":"Sorcier de l'eau","ti.n.veg":"Boss du brocoli","ti.n.steps":"Fusée à pas","ti.n.streak":"Flamme de série","ti.n.cook":"As des fourneaux","ti.n.learn":"Chouette savante","ti.n.boss":"Chasse-monstres","ti.n.trip":"Pro du voyage","ti.n.pet":"Pro des pattes","ti.n.wheel":"Chanceux·se","ti.n.legend":"Légende FitTag","ti.new":"🏷️ Nouveau titre débloqué : {n} ! Choisis-le dans « Apparence ».","pt.line":"{e} {n} · niveau {l}","pt.next":" · encore {x} 🍖 jusqu'au niveau {m}","pt.trick":" · sait : {t}","pt.hungry":"{e} {n} a faim – mange quelque chose de sain et il mange avec toi !","pt.lvl":"{e} {n} est maintenant niveau {l} ! Nouveau tour : {t} – touche-le dans le parc.","pt.tr.paw":"Donne la patte","pt.tr.roll":"Roulade","pt.tr.jump":"Grand saut","pt.tr.spin":"Pirouette","pt.tr.dance":"Danse","bo.title":"👾 Boss de la semaine","bo.n.sugar":"Le Monstre du sucre","bo.n.couch":"La Pieuvre du canapé","bo.n.fries":"Le Dragon des frites","bo.n.soda":"Le Lutin du soda","bo.weak.water":"Faiblesse : l'eau – chaque verre compte double !","bo.weak.move":"Faiblesse : le mouvement – chaque minute compte double !","bo.weak.veg":"Faiblesse : fruits & légumes – comptent double !","bo.how":"Tout ce qui est sain fait des dégâts – les snacks malsains le soignent !","bo.win":"🏆 Vaincu ! +30 points","bo.winT":"🏆 {n} est vaincu ! +30 points","bo.left":"Encore {n} jours","wh.title":"🎡 Roue de la chance","wh.sub":"Tourne une fois par jour – réponds à la question et le gain est à toi !","wh.spin":"🎡 Tourner","wh.done":"✅ Déjà tourné aujourd'hui – à demain !","wh.need":"Note d'abord quelque chose pour aujourd'hui, puis tu pourras tourner.","wh.got":"Tu as gagné : {p}","wh.q":"Réponds à la question pour l'obtenir :","wh.win":"🎉 Bravo ! Gagné : {p}","wh.lose":"Presque – la bonne réponse : {a}. Lot de consolation : +5 points","wh.close":"Super !","wh.p.pts":"🎯 +15 points","wh.p.pet":"🦴 Friandise : +20 croquettes","wh.p.boss":"💥 +25 dégâts au boss","wh.p.jack":"🍀 Jackpot : +30 points","wh.p.pet2":"🍖 Festin : +40 croquettes","wh.p.boss2":"⚡ Éclair : +40 dégâts au boss","al.title":"Album de stickers","al.sub":"{n} sur {m} stickers","al.cities":"🚆 Villes","al.learn":"📚 Savoir","al.boss":"👾 Boss vaincus","al.titles":"🏷️ Titres","al.cook":"🍳 Fait maison","al.tricks":"🐾 Tours de l'animal","al.new":"📒 Nouveau sticker dans ton album !","al.close":"Fermer","cb2.goal":"🎉 Objectif du jour atteint !","cb2.all4":"🌟 Les 4 objectifs du jour atteints – incroyable !",
       "sub.play":"🎮 Jouer",
       "ci.btn":"Check-in","ci.done":"Terminé ✓",
+      "adv.btn":"Avent","wh.pend":"Ta question t'attend encore !","wh.answer":"❓ Répondre","wh.later":"Répondre plus tard","pl.ch":"Défi du jour","pl.wheelGo":"Un tour + question de savoir",
       "tips":["Le matin, pose un verre d'eau près de ton lit ou de ton bureau – le premier verre est vite bu.","Une portion de légumes, c'est environ une poignée. Quelques lanières de poivron ou rondelles de concombre en snack, ça compte déjà.","Marcher 10 minutes après le repas aide la digestion et te rapproche de ton objectif d'activité.","L'escalier plutôt que l'ascenseur : quelques étages par jour, ça s'additionne sur la semaine.","Les céréales complètes rassasient plus longtemps que la farine blanche – par exemple du pain complet ou des flocons d'avoine au petit-déjeuner.","Mange lentement. La sensation de satiété n'arrive qu'après 15 à 20 minutes environ.","Planifie ton activité comme un rendez-vous. Ce qui est dans l'agenda a plus de chances d'arriver.","La moitié de l'assiette en légumes, un quart de protéines, un quart d'accompagnement – une règle simple.","Remplacer les boissons sucrées par de l'eau au citron, à la menthe ou au concombre économise beaucoup de sucre.","Mieux vaut 15 minutes chaque jour que deux heures une fois par semaine. La régularité bat l'intensité.","Des noix, un yaourt ou une pomme sont de bonnes collations pour un petit creux.","Bien dormir aide aussi à bien manger : fatigué, on se tourne plus vite vers le sucré."]
     },
     pl: {
@@ -1939,6 +1955,7 @@
       "st.badge":"🔥 {n}","st.toast":"🔥 {n} dni z rzędu! Zrób dziś coś zdrowego, żeby seria trwała.","st.freeze":" ❄️ Tarcza serii gotowa: jeden opuszczony dzień w tygodniu jest wybaczony.","st.zero":"🔥 Zacznij dziś nową serię – wystarczy jeden osiągnięty cel!","ti.label":"🏷️ Tytuł","ti.how.start":"","ti.how.water":"5 dni celu wody","ti.how.veg":"5 dni owoców i warzyw","ti.how.steps":"Raz 10 000 kroków","ti.how.streak":"Seria 7 dni","ti.how.cook":"5× ugotowane","ti.how.learn":"5 porcji wiedzy","ti.how.boss":"Pokonaj bossa tygodnia","ti.how.trip":"5 miast","ti.how.pet":"Zwierzak poziom 5","ti.how.wheel":"5 wygranych na kole","ti.how.legend":"Poziom 10","ti.n.start":"Świeżak","ti.n.water":"Wodny czarodziej","ti.n.veg":"Brokułowy boss","ti.n.steps":"Krokowa rakieta","ti.n.streak":"Płomień serii","ti.n.cook":"Kuchenna armata","ti.n.learn":"Mądra sowa","ti.n.boss":"Postrach potworów","ti.n.trip":"Mistrz podróży","ti.n.pet":"Łapkowy mistrz","ti.n.wheel":"Szczęściarz","ti.n.legend":"Legenda FitTag","ti.new":"🏷️ Nowy tytuł odblokowany: {n}! Wybierz go w „Wygląd”.","pt.line":"{e} {n} · poziom {l}","pt.next":" · jeszcze {x} 🍖 do poziomu {m}","pt.trick":" · umie: {t}","pt.hungry":"{e} {n} jest głodny – zjedz coś zdrowego, a zje z tobą!","pt.lvl":"{e} {n} ma teraz poziom {l}! Nowa sztuczka: {t} – dotknij go w parku.","pt.tr.paw":"Łapa","pt.tr.roll":"Turlanie","pt.tr.jump":"Wysoki skok","pt.tr.spin":"Piruet","pt.tr.dance":"Taniec","bo.title":"👾 Boss tygodnia","bo.n.sugar":"Cukrowy Potwór","bo.n.couch":"Kanapowa Ośmiornica","bo.n.fries":"Frytkowy Smok","bo.n.soda":"Napojowy Chochlik","bo.weak.water":"Słabość: woda – każda szklanka liczy się podwójnie!","bo.weak.move":"Słabość: ruch – każda minuta liczy się podwójnie!","bo.weak.veg":"Słabość: owoce i warzywa – liczą się podwójnie!","bo.how":"Wszystko, co zdrowe, zadaje obrażenia – niezdrowe przekąski go leczą!","bo.win":"🏆 Pokonany! +30 punktów","bo.winT":"🏆 {n} pokonany! +30 punktów","bo.left":"Jeszcze {n} dni","wh.title":"🎡 Koło fortuny","wh.sub":"Kręć raz dziennie – odpowiedz na pytanie, a nagroda jest twoja!","wh.spin":"🎡 Kręć","wh.done":"✅ Dziś już kręcone – jutro znowu!","wh.need":"Najpierw wpisz coś na dziś, potem możesz kręcić.","wh.got":"Wylosowano: {p}","wh.q":"Odpowiedz na pytanie, aby to zdobyć:","wh.win":"🎉 Dobrze! Wygrana: {p}","wh.lose":"Prawie – poprawnie: {a}. Nagroda pocieszenia: +5 punktów","wh.close":"Super!","wh.p.pts":"🎯 +15 punktów","wh.p.pet":"🦴 Smakołyk: +20 karmy","wh.p.boss":"💥 +25 obrażeń bossa","wh.p.jack":"🍀 Jackpot: +30 punktów","wh.p.pet2":"🍖 Uczta: +40 karmy","wh.p.boss2":"⚡ Błyskawica: +40 obrażeń bossa","al.title":"Album naklejek","al.sub":"Zebrane: {n} z {m}","al.cities":"🚆 Miasta","al.learn":"📚 Wiedza","al.boss":"👾 Pokonane bossy","al.titles":"🏷️ Tytuły","al.cook":"🍳 Ugotowane","al.tricks":"🐾 Sztuczki zwierzaka","al.new":"📒 Nowa naklejka w albumie!","al.close":"Zamknij","cb2.goal":"🎉 Cel dnia osiągnięty!","cb2.all4":"🌟 Wszystkie 4 cele dnia – niesamowite!",
       "sub.play":"🎮 Graj",
       "ci.btn":"Check-in","ci.done":"Gotowe ✓",
+      "adv.btn":"Adwent","wh.pend":"Twoje pytanie wciąż czeka!","wh.answer":"❓ Odpowiedz","wh.later":"Odpowiem później","pl.ch":"Wyzwanie dnia","pl.wheelGo":"Zakręć + pytanie z wiedzy",
       "tips":["Rano postaw szklankę wody przy łóżku albo biurku – pierwsza szklanka będzie wypita w mig.","Porcja warzyw to mniej więcej garść. Kilka pasków papryki albo plasterków ogórka jako przekąska już się liczy.","10 minut spaceru po jedzeniu wspiera trawienie i przybliża cię do celu ruchu.","Schody zamiast windy: kilka pięter dziennie sumuje się w ciągu tygodnia.","Pełne ziarno zamiast białej mąki syci na dłużej – np. chleb pełnoziarnisty albo owsianka na śniadanie.","Jedz powoli. Uczucie sytości pojawia się dopiero po ok. 15–20 minutach.","Planuj ruch jak spotkanie. To, co jest w kalendarzu, łatwiej się udaje.","Pół talerza warzyw, ćwierć białka, ćwierć dodatków – prosta zasada.","Zamiana słodkich napojów na wodę z cytryną, miętą lub ogórkiem oszczędza mnóstwo cukru.","Lepiej 15 minut codziennie niż dwie godziny raz w tygodniu. Regularność wygrywa z intensywnością.","Orzechy, jogurt albo jabłko to dobre przekąski na mały głód.","Wysypianie się pomaga też w jedzeniu: zmęczeni częściej sięgamy po słodycze."]
     }
   };
@@ -2034,7 +2051,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v102";
+  const VERSION = "v103";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -2613,7 +2630,7 @@
     $("#prev").disabled = offset>=30;
     const h = new Date().getHours();
     $("#greet").textContent = myName() ? t(h<11 ? "greet.mN" : h<18 ? "greet.dN" : "greet.eN", { n: myName() }) : t(h<11 ? "greet.m" : h<18 ? "greet.d" : "greet.e");
-    [renderChallenge, renderHeute, renderWoche, renderZiele, renderGame, renderOffice, drawQuick, renderRecipes, renderCheckin, renderShopping, renderPlan, renderReport, renderEvents, renderName, renderLeagueExtras, renderR8, renderFriends, renderR9, renderDiet, renderLearn, renderInsights, renderWeekRev, renderCookbook, renderWichtel, renderGamify].forEach(fn => { try { fn(); } catch(e){ window.__fitErr(fn.name + ": " + (e && e.message) + (e && e.stack ? "\n" + String(e.stack).split("\n").slice(1,3).join("\n") : "")); } });
+    [renderChallenge, renderHeute, renderWoche, renderZiele, renderGame, renderOffice, drawQuick, renderRecipes, renderCheckin, renderShopping, renderPlan, renderReport, renderEvents, renderName, renderLeagueExtras, renderR8, renderFriends, renderR9, renderDiet, renderLearn, renderInsights, renderWeekRev, renderCookbook, renderWichtel, renderGamify, renderPlayList].forEach(fn => { try { fn(); } catch(e){ window.__fitErr(fn.name + ": " + (e && e.message) + (e && e.stack ? "\n" + String(e.stack).split("\n").slice(1,3).join("\n") : "")); } });
   }
 
   let toastT;
@@ -5825,34 +5842,47 @@ Antworte NUR mit JSON: {"text":"..."}`);
     if (offset !== 0){ el.style.display = "none"; return; }
     const d = peek(0), any = (+d.wasser || 0) + (+d.gemuese || 0) + (d.meals || []).length + (d.acts || []).length + (+d.home || 0) + (d.mood ? 1 : 0) > 0;
     el.style.display = "";
-    el.innerHTML = `<div class="whrow"><div class="whmini">🎡</div><div><b>${t("wh.title")}</b><small>${d.wheel ? t("wh.done") : any ? t("wh.sub") : t("wh.need")}</small></div>${!d.wheel && any ? `<button type="button" class="btn" id="whGo">${t("wh.spin")}</button>` : ""}</div>`;
-    const g = $("#whGo"); if (g) g.onclick = spinWheel;
+    const pend = d.wheel && d.wheel.ok === undefined;
+    el.innerHTML = `<div class="whrow"><div class="whmini">🎡</div><div><b>${t("wh.title")}</b><small>${pend ? t("wh.pend") : d.wheel ? t("wh.done") : any ? t("wh.sub") : t("wh.need")}</small></div>${pend ? `<button type="button" class="btn" id="whGo">${t("wh.answer")}</button>` : !d.wheel && any ? `<button type="button" class="btn" id="whGo">${t("wh.spin")}</button>` : ""}</div>`;
+    const g = $("#whGo"); if (g) g.onclick = pend ? resumeWheel : spinWheel;
   }
   function spinWheel(){
     const d0 = peek(0); if (d0.wheel) return;
-    const pick = Math.floor(Math.random() * WHEEL.length), sh = $("#wheelSheet"), inn = $("#wheelIn");
-    const seg = 360 / WHEEL.length, rot = 360 * 5 + (360 - pick * seg - seg / 2);
-    inn.innerHTML = `<h2 style="text-align:center">${t("wh.title")}</h2><div class="wheelwrap"><div class="wptr">▼</div><div class="wheel" id="whW">${WHEEL.map((w, i) => `<span style="transform:rotate(${i * seg + seg / 2}deg) translateY(-92px) rotate(${-(i * seg + seg / 2)}deg)">${w[1]}</span>`).join("")}</div></div><div id="whQ"></div>`;
+    const pick = Math.floor(Math.random() * WHEEL.length), ls = lessons(), li = (dayIndex() * 7 + pick) % ls.length;
+    const d = dayOf(0); d.wheel = { p: WHEEL[pick][0], li }; save();
+    showWheel(pick, li, true);
+  }
+  function resumeWheel(){
+    const w = peek(0).wheel; if (!w || w.ok !== undefined) return;
+    const pick = Math.max(0, WHEEL.findIndex(x => x[0] === w.p)), li = +w.li || 0;
+    showWheel(pick, li, false);
+  }
+  function showWheel(pick, li, animate){
+    const sh = $("#wheelSheet"), inn = $("#wheelIn"), seg = 360 / WHEEL.length, end = 360 - pick * seg - seg / 2, rot = animate ? 360 * 5 + end : end;
+    inn.innerHTML = `<h2 style="text-align:center">${t("wh.title")}</h2><div class="wheelwrap"><div class="wptr">▼</div><div class="wheel" id="whW" style="${animate ? "" : "transition:none;transform:rotate(" + rot + "deg)"}">${WHEEL.map((w, i) => `<span style="transform:rotate(${i * seg + seg / 2}deg) translateY(-92px) rotate(${-(i * seg + seg / 2)}deg)">${w[1]}</span>`).join("")}</div></div><div id="whQ"></div>`;
     sh.classList.add("open");
-    requestAnimationFrame(() => { const w = $("#whW"); w.style.transform = `rotate(${rot}deg)`; });
-    const d = dayOf(0); d.wheel = { p: WHEEL[pick][0] }; save();
+    if (animate) requestAnimationFrame(() => { const w = $("#whW"); if (w) w.style.transform = `rotate(${rot}deg)`; });
     setTimeout(() => {
-      const ls = lessons(), l = ls[(dayIndex() * 7 + pick) % ls.length], prize = t("wh.p." + WHEEL[pick][0]);
-      $("#whQ").innerHTML = `<p class="whgot">${esc(t("wh.got",{ p: prize }))}</p><p class="note" style="margin:0 0 6px">${t("wh.q")}</p><p class="lrq">${l.e} ${esc(l.q)}</p><div class="quiz">${l.a.map((a, i) => `<button type="button" class="btn ghost wide" data-wa="${i}">${esc(a)}</button>`).join("")}</div><p class="note" id="whRes"></p>`;
+      const ls = lessons(), l = ls[li % ls.length], prize = t("wh.p." + WHEEL[pick][0]);
+      if (!$("#whQ")) return;
+      $("#whQ").innerHTML = `<p class="whgot">${esc(t("wh.got",{ p: prize }))}</p><p class="note" style="margin:0 0 6px">${t("wh.q")}</p><p class="lrq">${l.e} ${esc(l.q)}</p><div class="quiz">${l.a.map((a, i) => `<button type="button" class="btn ghost wide" data-wa="${i}">${esc(a)}</button>`).join("")}</div><p class="note" id="whRes"></p><button type="button" class="linkbtn" id="whLater" style="margin-top:6px">${t("wh.later")}</button>`;
+      $("#whLater").onclick = () => { sh.classList.remove("open"); render(); };
       $("#whQ").querySelectorAll("[data-wa]").forEach(b => b.onclick = () => {
         const ok = +b.dataset.wa === l.c, dd = dayOf(0);
         $("#whQ").querySelectorAll("[data-wa]").forEach(x => { x.disabled = true; x.classList.toggle("right", +x.dataset.wa === l.c); });
         if (!ok) b.classList.add("wrong");
-        dd.wheel = { p: WHEEL[pick][0], ok };
+        dd.wheel = { p: WHEEL[pick][0], li, ok };
         if (ok){ grantPrize(WHEEL[pick][0], dd); state.wheelWins = (+state.wheelWins || 0) + 1; metaTouched = true; }
         else dd.bonusPts = (+dd.bonusPts || 0) + 5;
         save();
+        const lt = $("#whLater"); if (lt) lt.remove();
         $("#whRes").innerHTML = (ok ? `<b style="color:var(--green)">${esc(t("wh.win",{ p: prize }))}</b>` : `<b>${esc(t("wh.lose",{ a: l.a[l.c] }))}</b>`) + `<br>${esc(l.x)}<br><button type="button" class="btn wide" id="whClose" style="margin-top:10px">${t("wh.close")}</button>`;
         $("#whClose").onclick = () => { sh.classList.remove("open"); render(); };
         if (ok) celebrate();
       });
-    }, 3200);
+    }, animate ? 3200 : 50);
   }
+
   // ---- Titel ----
   var TITLES = [
     { id:"start", e:"🌱", ok: () => true },
@@ -5945,6 +5975,43 @@ Antworte NUR mit JSON: {"text":"..."}`);
     $("#ciDone").onclick = closeCi;
     $("#ciSheet").addEventListener("click", e => { if (e.target === $("#ciSheet")) closeCi(); });
   } catch(e){}
+
+
+  // ---------- v103: Spielen als einheitliche Liste ----------
+  function openPlayCard(id){
+    const card = $("#" + id), slot = $("#playSlot"); if (!card || !slot) return;
+    slot.innerHTML = ""; slot.appendChild(card); card.style.display = "";
+    $("#playClose").textContent = t("adv.close");
+    $("#playSheet").classList.add("open");
+  }
+  function closePlayCard(){
+    const slot = $("#playSlot"), hold = $("#playHolder");
+    if (slot && hold) [...slot.children].forEach(c => hold.appendChild(c));
+    $("#playSheet").classList.remove("open"); render();
+  }
+  try { $("#playClose").onclick = closePlayCard; $("#playSheet").addEventListener("click", e => { if (e.target === $("#playSheet")) closePlayCard(); }); } catch(e){}
+  setInterval(() => { try { if (heuteSub === "play" && !document.querySelector(".sheet.open")) renderPlayList(); } catch(e){} }, 2000);
+  function renderPlayList(){
+    const el = $("#playList"); if (!el) return;
+    const d = peek(0), rows = [];
+    try { const txt = ($("#chText") || {}).textContent || ""; rows.push(["ch", "🎯", t("pl.ch"), txt, !!peek(offset).chDone]); } catch(e){}
+    try { const { b } = bossNow(), hp = Math.max(0, BOSS_HP - bossDamage()); rows.push(["boss", "👾", t("bo.n." + b[0]), hp ? `❤️ ${hp}/${BOSS_HP} · ${t("bo.weak." + b[2]).split(/[–-]/)[0].trim()}` : t("bo.win"), hp === 0]); } catch(e){}
+    try { const any = (+d.wasser || 0) + (+d.gemuese || 0) + (d.meals || []).length + (d.acts || []).length + (+d.home || 0) + (d.mood ? 1 : 0) > 0, pend = d.wheel && d.wheel.ok === undefined;
+      rows.push(["wheel", "🎡", t("wh.title").replace(/^\S+\s/, ""), pend ? t("wh.pend") : d.wheel ? t("wh.done") : any ? t("pl.wheelGo") : t("wh.need"), !!(d.wheel && d.wheel.ok !== undefined)]); } catch(e){}
+    try { const nl = nextLesson(); rows.push(["learn", nl.e, t("lr.title").replace(/^\S+\s/, ""), nl.t, !!d.learn]); } catch(e){}
+    try { const { monday, n } = boxWeek(), got = (state.boxes || {})[monday]; rows.push(["box", got ? "🎉" : "🎁", t("box.title").replace(/^\S+\s/, ""), got ? t("box.done") : n >= 5 ? t("box.ready") : t("box.progress",{ n }), !!got]); } catch(e){}
+    try { const wi = $("#wiCard"); if (wi && wi.style.display !== "none" && wi.innerHTML) rows.unshift(["wi", "🎁", t("wi.title").replace(/^\S+\s/, ""), wi.querySelector("p") ? wi.querySelector("p").textContent : "", false]); } catch(e){}
+    el.innerHTML = `<div class="plrows">${rows.map(([k, e, ti, sub, done]) => `<button type="button" class="plrow ${done ? "done" : ""}" data-pl="${k}"><span class="ple">${e}</span><span class="plt"><b>${esc(ti)}</b><small>${esc(sub)}</small></span><span class="plc">${done ? "✓" : "›"}</span></button>`).join("")}</div>`;
+    el.querySelectorAll("[data-pl]").forEach(b => b.onclick = () => {
+      const k = b.dataset.pl;
+      if (k === "ch") openChallenge();
+      else if (k === "boss") openPlayCard("bossCard");
+      else if (k === "wheel"){ const w = peek(0).wheel; if (w && w.ok === undefined) resumeWheel(); else if (!w && $("#whGo")) spinWheel(); else openPlayCard("wheelCard"); }
+      else if (k === "learn"){ const nl = nextLesson(); openLesson(nl.id); }
+      else if (k === "box"){ const bc = $("#boxCard"); if (bc && bc.classList.contains("ready") && typeof openBox === "function") openBox(); else openPlayCard("boxCard"); }
+      else if (k === "wi") openPlayCard("wiCard");
+    });
+  }
 
   // ---------- Woche als eigene Seite ----------
   function openWeek(){ $("#v-woche").classList.add("open"); document.body.classList.add("noscroll"); $("#v-woche").scrollTop = 0; }
