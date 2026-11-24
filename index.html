@@ -2205,8 +2205,8 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v121";
-  function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + " · FitTag " + VERSION; $("#storageInfo").textContent = t(k); }
+  const VERSION = "v122";
+  function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
   try { const raw = localStorage.getItem(LS_KEY); if (raw){ merge(JSON.parse(raw)); mode = "browser"; } else { localStorage.setItem(LS_KEY+"-test","1"); mode = "browser"; } } catch(e){ mode = "memory"; }
