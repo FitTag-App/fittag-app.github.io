@@ -1040,8 +1040,8 @@
   .ringhint{margin:8px 0 0;font-size:12.5px;color:var(--muted);text-align:center}
   .ringhint .linkbtn{font-size:12.5px}
   #ringSlot .counter{margin-top:0}
-  .helpfab{position:fixed;right:16px;bottom:calc(142px + env(safe-area-inset-bottom));z-index:65;width:40px;height:40px;border-radius:50%;border:2px solid var(--green);background:var(--card);color:var(--green);font-size:20px;font-weight:800;box-shadow:0 4px 12px rgba(31,42,36,.18)}
-  .helpfab.hide{opacity:0;pointer-events:none}
+  .helpbtn{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--line);background:rgba(255,253,248,.6);color:var(--muted);font-size:15px;font-weight:800;opacity:.8;flex:none;padding:0;margin-left:6px}
+  .helpbtn:active{opacity:1;transform:scale(.94)}
   .hbIn{display:flex;flex-direction:column;max-height:82vh}
   .hbhead{display:flex;align-items:center;gap:10px;margin-bottom:8px}
   .hbhead>div{flex:1}.hbhead b{display:block;font-size:17px}.hbhead small{color:var(--muted);font-size:12.5px}
@@ -1102,6 +1102,7 @@
           <button class="langbtn" id="langBtn" aria-haspopup="true" aria-expanded="false" data-i18n-aria="lang.title"><span id="langCur"></span> ▾</button>
           <div class="langmenu" id="langMenu" role="menu"></div>
         </div>
+        <button type="button" class="helpbtn" id="helpFab" data-i18n-aria="hb.title">?</button>
       </div>
       <div class="sub" id="greet"></div>
     </div>
@@ -1615,7 +1616,6 @@
 </div></div>
 <div class="yrshow" id="yrShow"></div>
 <button class="micfab" id="micFab" data-i18n-aria="vl.title">🎤</button>
-<button class="helpfab" id="helpFab" data-i18n-aria="hb.title">?</button>
 <div class="sheet" id="helpSheet"><div class="sheetIn hbIn">
   <div class="hbhead"><span class="hbav">🦉</span><div><b data-i18n="hb.title"></b><small data-i18n="hb.sub"></small></div><button class="x" id="hbX" aria-label="✕">✕</button></div>
   <div class="hblog" id="hbLog"></div>
@@ -2238,7 +2238,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v126";
+  const VERSION = "v127";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -4452,7 +4452,7 @@ ${HINT_SPEC}`);
   $("#speakNow").onclick = openVlSheet;
   $("#vlSheetClose").onclick = closeVlSheet;
   $("#vlSheet").addEventListener("click", e => { if (e.target.id === "vlSheet") closeVlSheet(); });
-  setInterval(() => { const onFood = $("#v-essen").classList.contains("on") && essenSub === "analyze"; $("#micFab").classList.toggle("hide", onFood || $("#v-woche").classList.contains("open")); try { $("#helpFab").classList.toggle("hide", $("#v-woche").classList.contains("open")); } catch(e){} }, 400);
+  setInterval(() => { const onFood = $("#v-essen").classList.contains("on") && essenSub === "analyze"; $("#micFab").classList.toggle("hide", onFood || $("#v-woche").classList.contains("open"));  }, 400);
 
 
   // ================= v43: Garten, Mitmach-Figur, Advent, Jahresrückblick, Abendroutine, Vorlesen, Etikett, Abteilungen =================
