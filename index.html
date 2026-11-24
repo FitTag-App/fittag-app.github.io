@@ -1069,6 +1069,14 @@
   .rchead{margin:0 0 8px 2px;font-size:15px}
   .quickline{display:block;width:100%;margin:10px 0 0;border:1px dashed var(--line);background:transparent;border-radius:12px;padding:9px 10px;font:inherit;font-size:13.5px;color:var(--ink);font-weight:600}
   .quickline b{color:var(--green);font-size:17px}
+  .qchips{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;margin-top:10px}
+  .qchips button{display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:8px 6px;font:inherit;font-size:15px}
+  .qchips button b{font-size:15px;min-width:10px}
+  .qchips button i{font-style:normal;color:var(--green);font-weight:800;font-size:16px}
+  .qchips button[data-qc="alcohol"] i{color:#d9822b}
+  .qchips .qmore{width:40px;padding:8px 0;color:var(--muted);font-size:15px}
+  .qchips button.pop{animation:qpop .3s}
+  @keyframes qpop{50%{transform:scale(1.12)}}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -1157,7 +1165,7 @@
       <h3 class="rchead" data-i18n="acc.ringsT"></h3>
       <div class="rings" id="rings"></div>
       <div class="score" id="score"></div>
-      <button type="button" class="quickline" id="homeQuick"><b>＋</b> <span data-i18n="rg.more"></span></button>
+      <div class="qchips"><button type="button" data-qc="kaffee"><span>☕</span><b id="qcKaffee">0</b><i>＋</i></button><button type="button" data-qc="home"><span>🏠</span><b id="qcHome">0</b><i>＋</i></button><button type="button" data-qc="alcohol"><span>🍷</span><b id="qcAlcohol">0</b><i>＋</i></button><button type="button" class="qmore" id="homeQuick" aria-label="…">✎</button></div>
       <p class="ringhint"><span data-i18n="rg.tap"></span> <button type="button" class="linkbtn" id="ringSpeak" data-i18n="rg.speak"></button></p>
     </div>
     <div class="card playlist acclist" data-hpart="home" id="homeAcc">
@@ -2253,7 +2261,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v130";
+  const VERSION = "v131";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -6315,6 +6323,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
   setInterval(() => { try { renderRcAcc(); } catch(e){} }, 2000);
   function renderLogAcc(){
     try { const d = peek(offset);
+      [["kaffee","qcKaffee"],["home","qcHome"],["alcohol","qcAlcohol"]].forEach(([k, id]) => { const el = $("#" + id); if (el) el.textContent = +d[k] || 0; });
       const qh = $("#accSubQuickH"); if (qh) qh.textContent = `💧 ${+d.wasser || 0} · 🥦 ${+d.gemuese || 0} · 🏠 ${+d.home || 0} · ☕ ${+d.kaffee || 0} · 🍷 ${+d.alcohol || 0}`;
       const q = $("#accSubQuick"); if (q) q.textContent = `💧 ${+d.wasser || 0} · 🥦 ${+d.gemuese || 0} · 🏠 ${+d.home || 0} · ☕ ${+d.kaffee || 0}`;
       const m = $("#accSubMove"); if (m) m.textContent = t("acc.moveSub",{ m: moveMin(d), s: fmt(steps(d)) });
@@ -6359,6 +6368,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
     $("#ringSheet").addEventListener("click", e => { if (e.target === $("#ringSheet")) $("#ringClose").click(); });
     $("#ringSpeak").onclick = () => openVlSheet();
     $("#homeQuick").onclick = () => openRing(4);
+    document.querySelectorAll("[data-qc]").forEach(b => b.onclick = () => { const x = document.querySelector(`.stepper [data-c="${b.dataset.qc}"][data-d="1"]`); if (x) x.click(); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); });
   } catch(e){}
   var moveAutoOpen = false;
   // ================= v125: Hilfe-Bot =================
