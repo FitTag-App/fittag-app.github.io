@@ -1059,6 +1059,7 @@
   .dxmv{display:flex;align-items:center;gap:10px;margin-top:10px;flex-wrap:wrap}
   .dxmv .dxchip{margin:0}
   .dxmv small{font-size:12.5px;color:var(--muted)}
+  #homeQuick .plc{font-size:22px;color:var(--green);font-weight:700}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -1151,6 +1152,7 @@
       <div class="score" id="score"></div>
       <p class="ringhint"><span data-i18n="rg.tap"></span> <button type="button" class="linkbtn" id="ringSpeak" data-i18n="rg.speak"></button></p>
      </div></div>
+     <div class="accsec"><button type="button" class="plrow" id="homeQuick"><span class="ple">✅</span><span class="plt"><b data-i18n="quick.title"></b><small id="accSubQuickH"></small></span><span class="plc">＋</span></button></div>
      <div class="accsec" data-acc="eve"><button type="button" class="plrow acch"><span class="ple">🌙</span><span class="plt"><b data-acct="eve.title"></b><small id="accSubEve"></small></span><span class="plc">›</span></button>
      <div class="accbody">
       <div class="evecard" id="eveCard" style="display:none"></div>
@@ -1199,6 +1201,7 @@
      <div class="accsec"><button type="button" class="plrow" id="goFood"><span class="ple">🍽️</span><span class="plt"><b data-i18n="lk.food"></b><small data-i18n="lk.foodSub"></small></span><span class="plc">›</span></button></div>
      <div class="accsec open" data-acc="quick"><button type="button" class="plrow acch"><span class="ple">💧</span><span class="plt"><b data-i18n="quick.title"></b><small id="accSubQuick"></small></span><span class="plc">›</span></button>
      <div class="accbody">
+      <div id="quickPart">
       <div class="counter" id="cntWater">
         <div class="lbl"><i>💧</i><div><span data-i18n="water"></span><small data-i18n="water.sub"></small></div></div>
         <div class="stepper"><button data-c="wasser" data-d="-1">−</button><b id="c-wasser">0</b><button class="plus" data-c="wasser" data-d="1">+</button></div>
@@ -1222,6 +1225,7 @@
       <div class="counter" id="nicRow" style="display:none">
         <div class="lbl"><i>🚬</i><div><span data-i18n="nic.c"></span><small data-i18n="nic.sub"></small></div></div>
         <div class="stepper"><button data-c="smoke" data-d="-1">−</button><b id="c-smoke">0</b><button class="plus bad" data-c="smoke" data-d="1">+</button></div>
+      </div>
       </div>
      </div></div>
      <div class="accsec" data-acc="move"><button type="button" class="plrow acch"><span class="ple">🏃</span><span class="plt"><b data-i18n="move"></b><small id="accSubMove"></small></span><span class="plc">›</span></button>
@@ -2241,7 +2245,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v128";
+  const VERSION = "v129";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -6303,6 +6307,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
   setInterval(() => { try { renderRcAcc(); } catch(e){} }, 2000);
   function renderLogAcc(){
     try { const d = peek(offset);
+      const qh = $("#accSubQuickH"); if (qh) qh.textContent = `💧 ${+d.wasser || 0} · 🥦 ${+d.gemuese || 0} · 🏠 ${+d.home || 0} · ☕ ${+d.kaffee || 0} · 🍷 ${+d.alcohol || 0}`;
       const q = $("#accSubQuick"); if (q) q.textContent = `💧 ${+d.wasser || 0} · 🥦 ${+d.gemuese || 0} · 🏠 ${+d.home || 0} · ☕ ${+d.kaffee || 0}`;
       const m = $("#accSubMove"); if (m) m.textContent = t("acc.moveSub",{ m: moveMin(d), s: fmt(steps(d)) });
       if (!moveAutoOpen){ moveAutoOpen = true; const ms = document.querySelector('#logAcc [data-acc="move"]'); if (ms && moveMin(peek(0)) === 0) ms.classList.add("open"); }
@@ -6334,7 +6339,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
   }
   var ringMoved = [];
   function openRing(i){
-    const map = [["cntWater"], ["cntVeg"], ["movePart"], ["stepsPart"]], ti = ["💧 " + t("water"), "🥦 " + t("veg"), "🏃 " + t("move"), t("steps.title")];
+    const map = [["cntWater"], ["cntVeg"], ["movePart"], ["stepsPart"], ["quickPart"]], ti = ["💧 " + t("water"), "🥦 " + t("veg"), "🏃 " + t("move"), t("steps.title"), "✅ " + t("quick.title")];
     const slot = $("#ringSlot"); if (!slot) return; closeRingMove();
     map[i].forEach(id => { const el = $("#" + id); if (!el) return; const ph = document.createComment("ring"); el.parentNode.insertBefore(ph, el); ringMoved.push([el, ph]); slot.appendChild(el); });
     $("#ringTitle").textContent = ti[i]; $("#ringSheet").classList.add("open");
@@ -6345,6 +6350,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
     $("#ringClose").onclick = () => { $("#ringSheet").classList.remove("open"); closeRingMove(); render(); };
     $("#ringSheet").addEventListener("click", e => { if (e.target === $("#ringSheet")) $("#ringClose").click(); });
     $("#ringSpeak").onclick = () => openVlSheet();
+    $("#homeQuick").onclick = () => openRing(4);
   } catch(e){}
   var moveAutoOpen = false;
   // ================= v125: Hilfe-Bot =================
