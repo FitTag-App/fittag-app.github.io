@@ -1231,6 +1231,7 @@
     <div class="card playlist acclist" data-hpart="log" id="logAcc">
      <div class="accsec"><button type="button" class="plrow" id="speakNow"><span class="ple">🎙️</span><span class="plt"><b data-acct="vl.title"></b><small data-i18n="acc.speak"></small></span><span class="plc">›</span></button></div>
      <div class="accsec"><button type="button" class="plrow" id="goFood"><span class="ple">🍽️</span><span class="plt"><b data-i18n="lk.food"></b><small data-i18n="lk.foodSub"></small></span><span class="plc">›</span></button></div>
+     <div class="accsec"><button type="button" class="plrow" id="goLabel"><span class="ple">🏷️</span><span class="plt"><b data-acct="lb.title"></b><small data-i18n="acc.lb"></small></span><span class="plc">›</span></button></div>
      <div class="accsec open" data-acc="quick"><button type="button" class="plrow acch"><span class="ple">💧</span><span class="plt"><b data-i18n="quick.title"></b><small id="accSubQuick"></small></span><span class="plc">›</span></button>
      <div class="accbody">
       <div id="quickPart">
@@ -2276,7 +2277,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v135";
+  const VERSION = "v136";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -6392,6 +6393,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
     $("#ringSheet").addEventListener("click", e => { if (e.target === $("#ringSheet")) $("#ringClose").click(); });
     $("#ringSpeak").onclick = () => openVlSheet();
     $("#homeQuick").onclick = () => openRing(4);
+    $("#goLabel").onclick = () => { const i = PAGES.findIndex(([a, b]) => a === "essen" && b === "analyze"); if (i >= 0) goPage(i, 1); setMealMode("label"); };
     document.querySelectorAll("[data-qc]").forEach(b => b.onclick = () => { const x = document.querySelector(`.stepper [data-c="${b.dataset.qc}"][data-d="1"]`); if (x) x.click(); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); });
   } catch(e){}
   var moveAutoOpen = false;
