@@ -1121,6 +1121,8 @@
   .clweek div span{font-size:18px}
   .clweek div small{font-size:9.5px;color:var(--muted);line-height:1.1}
   .clweek div.on{background:var(--ink);color:#fff}.clweek div.on small{color:#d8e0da}
+  #homeCh small{white-space:normal}
+  #homeCh.chdone .plc{color:var(--green);font-weight:800}
   .gltiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .gltile{border:1.5px solid var(--line);background:var(--card);border-radius:14px;padding:10px;text-align:left;font:inherit;color:var(--ink);display:flex;flex-direction:column;gap:2px}
   .gltile span{font-size:22px}.gltile b{font-size:14px}.gltile small{color:var(--muted);font-size:11.5px;line-height:1.3}
@@ -1213,6 +1215,7 @@
       <p class="ringhint"><span data-i18n="rg.tap2"></span> <button type="button" class="linkbtn" id="ringSpeak" data-i18n="rg.speak"></button></p>
     </div>
     <div class="card playlist acclist" data-hpart="home" id="homeAcc">
+     <div class="accsec"><button type="button" class="plrow" id="homeCh"><span class="ple" id="homeChE">🎯</span><span class="plt"><b data-acct="ch.title"></b><small id="homeChT"></small></span><span class="plc" id="homeChC">›</span></button></div>
      <div class="accsec" data-acc="morn"><button type="button" class="plrow acch"><span class="ple">🌅</span><span class="plt"><b data-acct="mo.title"></b><small id="accSubMorn"></small></span><span class="plc">›</span></button>
      <div class="accbody">
       <div class="evecard" id="mornCard" style="display:none"></div>
@@ -2325,7 +2328,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","morningOn","cleanOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v146";
+  const VERSION = "v147";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -3301,6 +3304,7 @@ Wenn keine Speisekarte lesbar ist: {"erkannt":false,"tipp":"kurze Erklärung"}.`
       ? `<span class="chok">${t("ch.done")}</span>${!check ? ` <button class="linkbtn" id="chUndo">${t("ch.undo")}</button>` : ""}`
       : (check ? `<small>${t("ch.auto")}</small>` : `<button class="btn" id="chDoneBtn">${t("ch.manual")}</button>`);
     $("#chCard").classList.toggle("done", done);
+    try { $("#homeChT").textContent = t("ch."+id); $("#homeChE").textContent = done ? "✅" : "🎯"; $("#homeChC").textContent = done ? "✓" : "›"; $("#homeCh").classList.toggle("chdone", done); } catch(e){}
     const b1 = $("#chDoneBtn"); if (b1) b1.onclick = () => { const dd = dayOf(offset); dd.chManual = true; save(); render(); toast(t("ch.done")); };
     const b2 = $("#chUndo"); if (b2) b2.onclick = () => { const dd = dayOf(offset); dd.chManual = false; dd.chDone = false; save(); render(); };
   }
@@ -6449,6 +6453,7 @@ Antworte NUR mit JSON: {"text":"..."}`);
     $("#ringSheet").addEventListener("click", e => { if (e.target === $("#ringSheet")) $("#ringClose").click(); });
     $("#ringSpeak").onclick = () => openVlSheet();
     $("#homeQuick").onclick = () => openRing(4);
+    $("#homeCh").onclick = () => { try { showHSub("play"); openPlayCard("chCard"); } catch(e){} };
     $("#goLabel").onclick = () => { const i = PAGES.findIndex(([a, b]) => a === "essen" && b === "analyze"); if (i >= 0) goPage(i, 1); setMealMode("label"); };
     document.querySelectorAll("[data-qc]").forEach(b => b.onclick = () => { const x = document.querySelector(`.stepper [data-c="${b.dataset.qc}"][data-d="1"]`); if (x) x.click(); b.classList.remove("pop"); void b.offsetWidth; b.classList.add("pop"); });
   } catch(e){}
