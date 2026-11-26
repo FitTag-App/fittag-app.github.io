@@ -2328,7 +2328,7 @@
     ["profile","nic","botNames","bots","leagueJoin","scene","tapped","tourDone","wxFx","boxes","nightOn","friendIds","advent","diet","weights","eveOn","morningOn","cleanOn","bingo","bingoAw","nsv","measures","trip","coffeeCut","learned","tipsSeen","accents","weekRev","cookbook","advDone","wiSent","wiSeen","wiThanked","title","bossWins","wheelWins","bossSeen"].forEach(k => { if (obj[k] !== undefined) state[k] = obj[k]; });
   }
   let storageKey = "st.memory";
-  const VERSION = "v148";
+  const VERSION = "v149";
   function setStorage(k){ storageKey = k; $("#storage").textContent = t(k) + (window.claude ? " · FitTag " + VERSION : ""); $("#storageInfo").textContent = t(k); }
 
   // local first so the page works immediately
@@ -2823,7 +2823,7 @@
 
     const dayNum = Math.floor(new Date(keyFor(offset)).getTime()/864e5);
     const tips = t("tips"); $("#tip").textContent = tips[dayNum % tips.length];
-    const qs = t("quotes"), q = qs[(Math.floor(new Date(keyFor(0)).getTime()/864e5) * 7) % qs.length]; const QM = { de:["„","“"], en:["“","”"], fr:["« "," »"], pl:["„","”"] }[lang] || ["“","”"]; $("#qText").textContent = QM[0] + q[0] + QM[1]; $("#qAuthor").textContent = "– " + q[1];
+    const qs = t("quotes"), q = qs[(Math.floor(new Date(keyFor(offset)).getTime()/864e5) * 7) % qs.length]; const QM = { de:["„","“"], en:["“","”"], fr:["« "," »"], pl:["„","”"] }[lang] || ["“","”"]; $("#qText").textContent = QM[0] + q[0] + QM[1]; $("#qAuthor").textContent = "– " + q[1];
   }
 
   function renderWoche(){
